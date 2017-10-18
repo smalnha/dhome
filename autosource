@@ -8,7 +8,7 @@ BACKUPDIR=$HOME/backup-homedir
 createLinks(){
 	for A in * .*; do
 		case "$A" in
-			. | .. | autosource | personal | x11 | old | .git | $IGNORE ) ;;
+			. | .. | autosource | personal | x11 | old | .git | .gitignore | $IGNORE ) ;;
 			*)
 				[ -e ~/"$A" ] && ! [ -L ~/"$A" ] && ! [ -d "$A" ] && mv ~/"$A" "$BACKUPDIR"
 				case "$A" in
