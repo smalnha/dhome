@@ -1,0 +1,428 @@
+#list of useful functions/shortcuts
+
+# To have functions available in subshells: export -f functionName
+
+. $MY_BINSRC/helperfuncs.src
+
+trash(){
+    for F in "$@"; do
+        DESTDIR="$MY_TRASH/`pwd`/`dirname "$F"`";
+        mkdir -p "$DESTDIR"
+        mv -fv --target-directory="$DESTDIR" "$F"
+    done
+}
+utrash(){
+	mv -v --target-directory=`pwd` $MY_TRASH/`pwd`/$*
+}
+
+# remember current directory
+m(){
+	if [ "$PWD" != "$HOME" ]; then
+		grep -v "$PWD$" "$HOME/.pwd-$HOSTNAME" > "$TEMP/.pwd-tmp"
+		echo "$PWD" >> "$TEMP/.pwd-tmp"
+		tail -15 "$TEMP/.pwd-tmp" > "$HOME/.pwd-$HOSTNAME"
+	fi
+}
+cdlast(){
+	#echo "$PWD" >> "$HOME/.pwd-$HOSTNAME"
+	m
+	local DIRS="$HOME"
+	while read DIR; do
+		#echo DIR=$DIR
+		[ -d "$DIR" ] && DIRS="$DIR:$DIRS"
+		#echo DIRS=$DIRS
+	done < "$HOME/.pwd-$HOSTNAME"
+
+	DIRS=${DIRS//\/home\/$USER/\\\$H}
+
+	COLUMNS=20 eval choose \"${DIRS//:/\" \"}\" || { echo "Quiting."; return 0; }
+	if [ "$CHOICE" ]; then
+		echo "You selected $CHOICE"
+		eval cd \"$CHOICE\"
+	fi
+}
+
+#-----------------------------------
+# File & strings related functions:
+#-----------------------------------
+
+syncTime(){
+	echo "Synchronizing time ..."
+	#sudo rdate time.nist.gov
+	if sudo ntpdate ntp || sudo ntpdate time.nist.gov || sudo ntpdate north-america.pool.ntp.org; then
+		echo "hwclock --systohc ..."
+		sudo hwclock --systohc
+	fi
+}
+
+
+# Find a file with a pattern in name:
+function ff() { find . -follow -iname $* -ls ; }
+
+# Find a file with pattern $1 in name and Execute $2 on it:
+function fe() { find . -iname '*'$1'*' -exec ${2:-file} {} \;  ; }
+
+# for highlighting
+SMSO=$(tput smso)
+RMSO=$(tput rmso)
+function highlight(){
+	sed "s/$1/${SMSO}\0${RMSO}/gI" #| less
+}
+
+# find pattern in a set of files and highlight them:
+function fstr()
+{
+    OPTIND=1
+    local case=""
+    local usage="fstr: find string in files.
+Usage: fstr [-i] \"pattern\" [\"filename pattern\"] "
+    while getopts :it opt
+    do
+        case "$opt" in
+        i) case="-i " ;;
+        *) echo "$usage"; return;;
+        esac
+    done
+    shift $(( $OPTIND - 1 ))
+    if [ "$#" -lt 1 ]; then
+        echo "$usage"
+        return;
+    fi
+    find . ${3:-} -type f -name "${2:-*}" | grep -v "\.svn/" | xargs grep --color -sn ${case} "$1" 2>&-
+    #find . ${3:-} -type f -name ".${2:-*}" -print0 | xargs -0 grep --color -sn ${case} "$1" 2>&-
+}
+function fstrLocal(){
+	fstr "$1" "${2:-*}" "-maxdepth ${3:-1}"
+}
+
+# $1 = relative number of directories to cd over
+function cdSibling(){
+	local DIR_COUNT=${1:-0}
+	if [ $DIR_COUNT -lt 0 ]; then
+		DIR_COUNT=${1//-}
+		SIBLING_DIR=`find .. -maxdepth 1 -type d | sort | grep -B $DIR_COUNT "${PWD##*/}$" | head -1`
+	else
+		SIBLING_DIR=`find .. -maxdepth 1 -type d | sort | grep -A $DIR_COUNT "${PWD##*/}$" | tail -1`
+	fi
+	[ ${DIR_COUNT} -lt 3 ] && DIR_COUNT=3
+	find .. -maxdepth 1 -type d | sort | grep -C $DIR_COUNT "$SIBLING_DIR" | highlight "${SIBLING_DIR//\//\\/}"
+	[ "$SIBLING_DIR" == ".." ] || cd "$SIBLING_DIR"
+}
+function cdChild(){
+	command ls -d */ &> /dev/null || return 1
+	CHILD_DIR=`command ls -d */ | head -1`
+	cd "$CHILD_DIR"
+}
+# cd to ancestor dir: cdBack <anyParentDir>
+cdBack() { cd "${PWD/\/$@\/*//$@}"; }
+# cd to any child dir
+cdForw() { cd **/"$@"; }
+
+#function cuttail() # cut last n lines in file, 10 by default
+#{
+#    nlines=${2:-10}
+#    sed -n -e :a -e "1,${nlines}!{P;N;D;};N;ba" $1
+#}
+
+upper() { echo ${@^^}; }
+lower() { echo ${@,,}; }
+
+function uppercase()  # move filenames to uppercase
+{
+    for file ; do
+        filename=${file##*/}
+        case "$filename" in
+        */*) dirname==${file%/*} ;;
+        *) dirname=.;;
+        esac
+        nf=$(echo $filename | tr a-z A-Z)
+        newname="${dirname}/${nf}"
+        if [ "$nf" != "$filename" ]; then
+            mv "$file" "$newname"
+            echo "uppercase: $file --> $newname"
+        else
+            echo "uppercase: $file not changed."
+        fi
+    done
+}
+
+function lowercase()  # move filenames to lowercase
+{
+    for file ; do
+        filename=${file##*/}
+        case "$filename" in
+        */*) dirname==${file%/*} ;;
+        *) dirname=.;;
+        esac
+        nf=$(echo $filename | tr A-Z a-z)
+        newname="${dirname}/${nf}"
+        if [ "$nf" != "$filename" ]; then
+            mv "$file" "$newname"
+            echo "lowercase: $file --> $newname"
+        else
+            echo "lowercase: $file not changed."
+        fi
+    done
+}
+
+function swap()         # swap 2 filenames around
+{
+    local TMPFILE=tmp.$$
+    mv "$1" $TMPFILE
+    mv "$2" "$1"
+    mv $TMPFILE "$2"
+}
+
+
+#-----------------------------------
+# Process/system related functions:
+#-----------------------------------
+
+function p() { ps $@ -u $USER -o pid,%cpu,%mem,bsdtime,start_time,command ; }
+function pdup() { ps $@ -u $USER -o pid,%cpu,%mem,bsdtime,start_time,command | sort -k 6 ; }
+function pp() { ps f -u $USER -o pid,%cpu,%mem,bsdtime,start_time,command | awk '!/awk/ && $0~var' var=${1:-".*"} ; }
+function ppo() { ps f -u $USER -o pid,%cpu,%mem,bsdtime,start_time,command | grep -v "\(xfce4\|.xsession\|gnubiff\|fluxbox\|ivman\|xautolock\|nailer\)" ; }
+
+function my_ip() # get IP adresses
+{
+	for IFNAME in eth0 wlan0 eth1; do
+		MY_IP=$(/sbin/ifconfig ${IFNAME} | awk '/inet/ { print $2 } ' | sed -e 's/addr://')
+   	MY_ISP=$(/sbin/ifconfig ${IFNAME} | awk '/P-t-P/ { print $3 } ' | sed -e 's/P-t-P://')
+		case "$MY_IP" in
+			*.*.*.*) 
+				echo "$MY_IP"
+				return ;;
+		esac
+	done
+}
+
+function ii()   # get current host related info
+{
+cat /etc/lsb-release
+lsb_release -a
+
+sudo dmidecode -s system-manufacturer
+sudo dmidecode -s system-product-name
+sudo dmidecode -s system-version
+
+	local NC='\e[0m'
+	local RED='\e[1;31m'
+    echo -e "\nYou are logged on ${RED}$HOSTNAME"
+    echo -e "\n${RED}CPU:$NC " ; cat /proc/cpuinfo
+    echo -e "\n${RED}Memory stats :$NC " ; free
+    echo -e "\n${RED}virtual memory statistics:$NC " ; vmstat
+    echo -e "\n${RED}Disk :$NC " ; df -kTh
+   echo -e "\n${RED}Input devices:$NC "; cat /proc/bus/input/devices
+    echo -e "\n${RED}Mounts :$NC " ; mount
+    echo -e "\n${RED}/etc/exports :$NC " ; cat /etc/exports
+    echo -e "\n${RED}Route :$NC " ; route
+    echo -e "\nAdditional information:$NC " ; uname -a
+    echo -e "\n${RED}Users logged on:$NC " ; w -h
+    echo -e "\n${RED}Current date :$NC " ; date
+    echo -e "\n${RED}Machine stats :$NC " ; uptime
+    echo -e "\n${RED}PCI :$NC " ; lspci -vv
+    my_ip 2>&- ;
+    echo -e "\n${RED}Local IP Address :$NC" ; echo ${MY_IP:-"Not connected"}
+    echo -e "\n${RED}ISP Address :$NC" ; echo ${MY_ISP:-"Not connected"}
+    echo -e "\n${RED}resolv.conf:$NC"; cat /etc/resolv.conf
+    echo -e "\n${RED}exportfs:$NC"; /usr/sbin/exportfs
+    echo -e "\n${RED}showmount (what can be mounted from phillips):$NC"; showmount -e phillips
+    echo -e "\nThe following needs root access"
+    echo -e "\n${RED}lvmdiskscan:$NC"; /sbin/lvmdiskscan
+    echo
+    echo -e "\n${RED}Running network services: $NC"; netstat -atup
+	echo -e "\n$RED Show all programs connected or listening on a network port";
+		netstat -alnp --protocol=inet | grep -v CLOSE_WAIT | cut -c-6,21-94 | tail +2
+
+    echo 
+    echo -e "\n${RED}Open ports: $NC";  nmap localhost
+    echo 
+    echo -e "\n${RED}Open files that are using internet and ports: $NC"; lsof -n -i -P
+	echo -e "\n${RED}lshw :$NC" ; sudo lshw
+	echo -e "\n${RED}Hdparm info for hda :$NC" ; sudo hdparm -i /dev/hda
+	echo -e "\n${RED}tune2fs hda :$NC" ; sudo tune2fs -l `mount | grep " / " | cut -d " " -f 1`
+    echo 
+}
+
+
+# Misc utilities:
+
+function repeat()       # repeat n times command
+{
+    local i max
+    max=$1; shift;
+    for ((i=1; i <= max ; i++)); do  # --> C-like syntax
+        eval "$@";
+    done
+}
+
+# dnlam: my functions
+
+renExt(){
+	# find -name "*.$1" -type f | xargs -i echo $(myBasename "{}" ".$1")
+	#| xargs -i mv {} `myBasename {} .$1`.$2
+	for i in *.$1; do mv $i "`myBasename "$i" "$1"`$2"; done
+
+# only for redhat:	rename $1 $2 *$1
+}
+renFiles(){
+	echo "renFiles {fileset} {oldPattern} {newPattern}"
+# only for redhat:	rename $2 $3 $1
+	for OLDF in $1
+	do			
+	   NEWF=`echo $OLDF | sed "s/$2/$3/"`
+	   mv -v $OLDF $NEWF	# rename the file
+	done
+}
+renDirs(){
+	find . -type d -name $1 | while read dirname; do
+		echo "mv $dirname ${dirname%/$1}/$2"
+		mv $dirname ${dirname%/$1}/$2
+	done
+}
+
+tgzlist(){
+	tar -ztf $*
+}
+tgz(){
+    if [ -d "$1" ]; then
+        # basename removes the trailing '/'
+        tar -zcvf "`basename $1`.tgz" "$1"
+    else
+    	tar -zcvf "$@" 
+    fi
+}
+tgzupdate(){
+	FILEN=$1
+	shift
+	gunzip $FILEN
+	tar -uvf ${FILEN%.*}.tar $*
+	gzip ${FILEN%.*}.tar
+	mv ${FILEN%.*}.tar.gz $FILEN 
+}
+bz2(){
+	tar -jcvf $*
+}
+untgz(){
+	tar -zxv --directory=${2:-.} -f $1
+}
+unbz2(){
+	tar -jxv --directory=${2:-.} -f $1
+}
+
+intalltgz(){
+	tar -zxvf $1
+	cd `myBasename $1 .tar.gz`* && \
+	./configure && make && make install
+}
+
+findgrep () {           # find | grep
+	if [ $# -eq 0 ]; then
+		echo "findgrep: No arguments entered."; return 1
+	else
+		# "{.[a-zA-Z],}*" instead of "." makes the output cleaner
+		find {.[a-zA-Z],}* -type f | xargs grep -n $* /dev/null 2> /dev/null
+	fi
+}
+
+noh(){
+	# need to redirect stdin and stdout to null and stderr to stdout
+	local outfile=nohup.`myBasename $1`.out
+	echo "---------- Running: $*" >> $outfile
+	echo "Use 'ps' to see it."
+	nohup $* < /dev/null >> $outfile 2>&1 &
+	#( (nohup $* < /dev/null 2>&1) && (echo "-- Done: $*" < /dev/null >> nohup.out 2>&1) ) < /dev/null > /dev/null 2>&1 &
+}
+
+function printLandscape(){
+	# --no-header
+	a2ps -1 --landscape --chars-per-line=200 $*
+	open.sh ${1%%.*}.ps
+	rm -i ${1%%.*}.ps
+}
+
+function print1up(){
+	# --no-header
+	a2ps -1 $*
+	open.sh ${1%%.*}.ps
+	rm -i ${1%%.*}.ps
+}
+
+function print2up(){
+	# a2ps --list-options
+	# -A several files on 1 sheet
+	# --no-header
+	a2ps -2 $*
+	open.sh ${1%%.*}.ps
+	rm -i ${1%%.*}.ps
+}
+
+forAllExcept(){
+	ls -AF1 --indicator-style=none | grep -v $1 | xargs $2
+}
+
+rmALLexcept(){
+	forAllExcept $1 "rm -r"
+}
+
+myVars(){
+	for VARS in ${!MY_*}; do
+		echo $VARS=`printenv $VARS`
+	done
+	unset VARS
+}
+
+dusage(){
+	command du -xs * . | sort -n -r
+}
+
+function fixExecMod() { find . -type f -iname '*'.$1 -print -exec chmod a-x {} \; ; }
+
+function fixALLMod() { 
+	for extens in  jar htm html js ini xml java c cpp zip props xsl txt jpg png gif xpm doc rtf vsd ppt psd ps pdf asc ico log
+	do
+		fixExecMod $extens'*'
+	done
+
+	find . -type d | xargs chmod o-w
+}
+
+################################################################################3333
+#http://www.novell.com/documentation/suse91/suselinux-adminguide/html/ch06s06.html
+
+#Conversion from PostScript to PDF:
+gs_ps2pdf(){
+    gs -q -dNOPAUSE -dSAFER \
+     -sOutputFile=/tmp/colorcir.pdf -sDEVICE=pdfwrite \
+     /usr/share/doc/packages/ghostscript/examples/colorcir.ps \
+     quit.ps
+}
+
+#Conversion of the generated PDF file /tmp/colorcir.pdf to PostScript:
+gs_pdf2ps(){
+    gs -q -dNOPAUSE -dSAFER \
+     -sOutputFile=/tmp/colorcir.ps -sDEVICE=pswrite \
+     /tmp/colorcir.pdf quit.ps
+}
+
+#Following the reconversion from PDF to PostScript, the file /tmp/colorcir.ps does not match the original file /usr/share/doc/packages/ghostscript/examples/colorcir.ps. However, there should be no visible difference in the printout.
+
+#Merging PostScript and PDF files into a PostScript file:
+gs_psMerge(){
+    local OUTFILE=$1
+    shift
+    gs -q -dNOPAUSE -dSAFER -dBATCH -sDEVICE=pswrite -sOutputFile="$OUTFILE" "$@"
+}
+
+#Merging PostScript and PDF files into a PDF file:
+gs_mergeToPdf(){
+    gs -q -dNOPAUSE -dSAFER -sOutputFile=/tmp/out.pdf \
+     -sDEVICE=pdfwrite /tmp/out.ps \
+     /usr/share/doc/packages/ghostscript/examples/golfer.ps \
+     /tmp/colorcir.pdf quit.ps
+}
+
+
+
+diffxml() { diff -wb <(xmllint --format "$1") <(xmllint --format "$2"); }
+

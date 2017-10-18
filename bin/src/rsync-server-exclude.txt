@@ -1,0 +1,4 @@
+# excluded from the includes file
+
+#.cpan/build
+#.cpan/sources

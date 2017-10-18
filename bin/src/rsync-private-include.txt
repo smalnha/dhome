@@ -1,0 +1,21 @@
+# ::: private
+#.addressbook
+#Dropbox  .abook
+#Dropbox  .calendar/
+#Dropbox  .cvspass
+#Dropbox  .asnotes.asc
+#Dropbox  .fetchyahoorc
+#Dropbox  .gotmailrc
+.gnupg
+#Dropbox  .gwhere
+#Dropbox  .msmtprc
+#Dropbox  .mutt/
+#Dropbox  .pinerc
+#Dropbox  .signature-friend
+#Dropbox  .spamassassin
+#Dropbox  .tomboy
+#Dropbox  .vmware
+#Dropbox  .encryptedprivate
+#Dropbox  private
+
+# ::: end

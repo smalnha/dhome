@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if ! [ "$SSH_AUTH_SOCK" ]; then
+	. $HOME/.ssh/ssh-agent.src
+fi
+
+if ! ssh-add -l > /dev/null; then
+	ssh-add
+fi
+
+#echo "ssh $@"
+exec /usr/bin/ssh "$@"
+

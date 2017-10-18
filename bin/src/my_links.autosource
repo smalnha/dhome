@@ -1,0 +1,142 @@
+#!/bin/bash
+
+# The idea is to have all links point a subdir in this directory, so that they can be managed in one location.
+# Any link errors are quickly seen.
+
+mkdirFromLink(){
+	# echo "-- $F"
+	local F="$1"
+	[ -L "$F" ] || { echo "Not a symbolic link: $F"; return 1; }
+	[ -e "$F" ] && { echo "Already exists: `ls -hal $F`"; return 0; }
+	local FDIR
+	if which readlink &> /dev/null; then
+		local FDIR=`readlink "$F"`
+	else
+		local FDIR=`ls -l "$F" | cut -d '>' -f 2`
+	fi
+	echo "Making directory: $FDIR"
+	mkdir -p "$FDIR"
+	chmod go-rwx "$FDIR"
+}
+mkdirFromAllLinks(){
+	for F in *; do
+		[ -L "$F" ] && mkdirFromLink "$F"
+	done
+}
+
+listWritableTmpFs(){
+	df | grep tmpfs | grep -o '/.*' | while read TMPDIR; do test -w "$TMPDIR" && echo $TMPDIR; done
+}
+
+# initialize directories that an application does not create  (e.g. cache, tmp, or bak directory).  No file moving involved.
+initLinks(){
+# var:
+# 	tmp: "TEMP" dir; okay if deleted
+# 	trash: purgatory; backup of 'rm' command or other delete action
+# 
+# 	cache: for running applications
+# 
+# 	bak:
+# 		vim,rsync,tiddly: application backup directory
+	[ -d "$HOME/NOBACKUP/var" ] || { echo "Directory does not exists: $HOME/NOBACKUP/var"; return 1; }
+	while read DEST LINKNAME; do
+		if [ "$LINKNAME" == "tempDir" ]; then  # special case
+			case "$HOSTNAME" in
+				hagrid ) # hagrid has /var/lock but shares the home dir with megaboom and others
+					MY_TEMP="/tmp/${USER}-tempDir";;
+				*)
+					SHMDIR=/dev/shm
+					if [ -w "$SHMDIR" ]; then 
+						# after restart, ramdisk is empty, so subdirs need to be recreated.  added initialization in .bash_profile
+						MY_TEMP="$SHMDIR/${USER}-tempDir"
+					elif [ -w "/tmp" ]; then
+						MY_TEMP="/tmp/${USER}-tempDir"
+					fi
+				;;
+			esac
+			[ -d $MY_TEMP ] || mkdir $MY_TEMP && ln -snf $MY_TEMP varDir/tmp
+		   chmod go-rwx $MY_TEMP
+		fi
+		[ -L $LINKNAME ] || ln -snf "$DEST" $LINKNAME
+		mkdirFromLink $LINKNAME
+	done <<EOF
+	$HOME/NOBACKUP/var varDir
+	varDir/tmp         tempDir
+	varDir/tmp/mnt     mntDir
+	varDir/trash       trashDir
+	varDir/bak/rsync   rsyncBackup
+	varDir/bak/vim     vimBackup
+   tempDir/cache/dotCache dotCache
+   tempDir/cache/muttCache muttCache
+EOF
+}
+
+redirectDirs(){
+	while read ORIG DEST; do 
+	 for ORIGIN in $ORIG; do
+		# if ORIGIN's parent doesn't exists, don't need to do anything
+		[ -d `dirname $ORIGIN` ] || continue
+
+		echo "Processing: $ORIGIN $DEST"
+		LINKNAME=`basename "$DEST"`
+		# if ORIGIN is a link and exists, don't do anything
+		# if ORIGIN is a link and doesn't exists and dest exists, try to recreate the link
+		if [ -L "$ORIGIN" ]; then
+			if [ -e "$ORIGIN" ]; then
+				echo "Already a link: `ls -hal $ORIGIN`"
+				#[ -d "$DEST" ] || mkdir -v "$DEST"
+				continue
+			elif [ -d "$DEST" ]; then
+				ln -sfn "$HOME/.my_links/$LINKNAME" "$ORIGIN"
+				ln -sfn "$DEST" "$LINKNAME"
+			else
+				mkdir "$DEST"
+				echo "You may want to remove links since $DEST doesn't exist:"
+				echo "   rm -f $ORIGIN"
+				echo "   rm -f $LINKNAME"
+			fi
+		fi
+
+		# if ORIGIN is an actual directory, move the dir and create links
+		if [ -d "$ORIGIN" ] && ! [ -L "$ORIGIN" ]; then
+			echo "=== Moving $ORIGIN --> $DEST "
+			# make sure parent dest directories exists
+			mkdir -p "$DEST/.."
+			# if DEST already exists, del it if empty else move it
+			[ -d "$DEST" ] && rmdir --ignore-fail-on-non-empty "$DEST"
+			[ -d "$DEST" ] && mv -fv "$DEST"{,.bak-`date +%Y-%m-%d-%T`}
+			# mv files to links
+			mv -fv "$ORIGIN" "$DEST" || { echo "====== Skipping: could not mv dir: $ORIGIN"; continue; } 
+			chmod go-rwx "$DEST"
+			# create link to the link
+			ln -sfn "$HOME/.my_links/$LINKNAME" "$ORIGIN"
+			ln -sfn "$DEST" "$LINKNAME"
+		else 
+			echo "=== Skipping: directory does not exists: $ORIGIN"
+		fi
+	 done
+	done <<EOF
+	$HOME/.Trash                                  trashDir/Trash
+	$HOME/.xfetrash                               trashDir/xfeTrash
+
+	$HOME/.java/deployment/cache                  tempDir/cache/javaCache
+
+	$HOME/.cxoffice/installers                    tempDir/cxoffice-installers
+	$HOME/.xsmbrowser/xsmbrowser-temp             tempDir/xsmbrowser
+
+	$HOME/.evolution/cache                        varDir/cache/evolutionCache
+
+	$HOME/.googleearth/Cache                      tempDir/cache/googleEarthCache
+EOF
+
+	#$HOME/.mozilla/firefox/*.default/Cache        tempDir/cache/firefoxCache
+	#$HOME/.cache                                  tempDir/cache/dotCache
+#	$HOME/.opera/images                           tempDir/cache/operaImages
+#	$HOME/.opera/cache4                           tempDir/cache/operaCache
+#  $HOME/.fvwm/tmp                               tempDir/cache/fvwmTmp
+
+}
+
+initLinks #&& redirectDirs
+
+

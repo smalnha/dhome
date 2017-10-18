@@ -1,0 +1,53 @@
+#Dropbox  .Xmodmap
+#Dropbox  .Xresources
+#Dropbox  .aterm_menu
+#Dropbox  .background
+#Dropbox  .conkyrc*
+#Dropbox  .fehrc
+#Dropbox  .fonts.conf
+#Dropbox  .gv
+#Dropbox  .keymap
+#Dropbox  .mrxvtrc
+#Dropbox  .rxvt_menu
+#Dropbox  .unikeyrc
+#Dropbox  .vnc/xstartup
+#Dropbox  .wmrc
+#Dropbox  .xautostart
+#Dropbox  .xautostart1
+#Dropbox  .xautostart2
+#Dropbox  .runSingleton.src
+#Dropbox  .xautostop
+#Dropbox  .xbindkeysrc
+#Dropbox  .xinitrc
+#Dropbox  .xprofile
+#Dropbox  .xsession
+#Dropbox  .xsmbrowser
+#Dropbox  .xxdiffrc
+
+# xfce config
+# need to be more selective: .config/
+# unused: .fluxbox/
+# needed? .fonts/
+
+# unused: .foxrc
+# unused: .fvwm/
+
+# for gnubiff
+.gnubiffrc
+# unused: .gconf/apps/mail-notification/
+# unused: .gnome2/mail-notification/
+# unused: .gkrellm2
+# printer-specific: .gtklp/gtklprc
+
+# unused: .icons/
+# unused: .ipager/
+#.liferea/feedlist.opml
+
+# # rsync problems:
+# unused: .nailer
+# unused: .tablaunch
+#.urlview   # set $BROWSER instead
+# unused: yudit
+
+#host-specific: .mozilla/plugins
+

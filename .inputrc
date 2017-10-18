@@ -1,0 +1,97 @@
+
+# use 'bind -p' to see all bindings
+
+# ignore hidden directory in bash completion (e.g. .svn)
+set match-hidden-files off
+
+$if Bash
+    #set bell-style visible
+    set expand-tilde off
+
+    #When listing possible file completions, put / after directory names and * after programs:
+    set visible-stats on
+
+    #List the possible completions when Tab is pressed:
+    set show-all-if-ambiguous on
+
+    set enable-keypad on
+
+    set completion-query-items 200
+$endif
+
+#completed names which are symbolic links to directories have a slash appended
+#set mark-symlinked-directories on
+
+# equivalent to
+"\e[3~": delete-char	# Delete
+
+# VT
+"\e[1~": beginning-of-line	# Home in xterm,rxvt
+"\e[4~": end-of-line	# End in xterm,rxvt
+
+# rxvt, konsole, ...
+"\e[7~": beginning-of-line	# Home
+"\e[8~": end-of-line	# End
+"\e[B":         history-search-forward  # Down-Arrow
+"\e[A":         history-search-backward # Up-Arrow
+# Alt-Up
+"\e[1;3A": "cdSibling -1\n"
+# Alt-Down
+"\e[1;3B": "cdSibling 1\n"
+# Alt-Left, Alt-Right
+"\e[1;3D": "pushd ..\n"
+"\e[1;3C": "popd 2> /dev/null || cdChild\n"
+
+# "\e[5~": "pushd ~\n"	# Page-up
+# "\e[6~": "popd\n"	# Page-Down
+
+#VT220
+"\eOH": beginning-of-line
+"\eOF": end-of-line
+"\eOB":         history-search-forward  # Down-Arrow
+"\eOA":         history-search-backward # Up-Arrow 
+
+# (F1 .. F5) are "\e[11~" ... "\e[15~" in X windows
+# "\e[11~": "man "
+
+# (F1 .. F5) are "\e[[A~" ... "\e[[E~" in console
+# "\e[[A": "man "
+# "\e[[B": "info "
+# "\e[[C": "l "
+# "\e[[D": "cd "
+ 
+#F8: "\e[[19~":"set | grep LIPS\C-M"
+
+"\C-a": "cd -\n"
+"\C-b": "bashcomplete\n"
+#"\C-j": "pushd .\n"
+#"\C-h": "popd\n"
+
+"\C-x\C-r": re-read-init-file
+#default- #Meta-Rubout: backward-kill-word
+"\C-f": menu-complete 1
+"\C-w": menu-complete -1 
+TAB: complete
+# bash completions do not use more
+#set page-completions off
+
+# (M-C-e) Expand the line as the shell does. This performs alias and history expansion as well as all of the shell word expansions 
+#"\C-e": shell-expand-line
+
+# paste from cut buffer
+#"\M-i": "\e[2~"
+
+# Tip: use M-. to insert previous arguments
+
+# prev-command, home, forward a word, space, Ctrl-K
+"\M-,": "\C-p\e[1~\M-f \C-k"
+# prev-command, backward a word, space, Ctrl-K
+"\M-/": "\C-p\M-\C-h"
+
+# Alt-backspace
+"\M-\C-?": backward-kill-word
+
+# so that SBT stops complaining
+
+
+

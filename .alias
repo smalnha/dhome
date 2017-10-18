@@ -1,0 +1,234 @@
+#!/bin/bash
+
+# use '\' to ignore aliases, e.g., \cp
+# use 'command' or 'builtin' to ignore functions
+
+############# OS-specific ##################
+
+UNAME=`uname`
+case "$UNAME" in 
+  "Linux" )
+		alias rm='rm -vi'
+   	# The 'ls' family (this assumes you use the GNU ls)
+   	alias ls='echo $PWD >| $TMP/$USER-lastPWD; ls -h --color=auto'  # add colors for filetype recognition
+    ;;
+  "SunOS" )
+    ;;
+esac
+
+#############  Aliases and functions   #############
+# for generic (not set up, e.g. no $BINSRC directory) systems
+
+alias mv='mv -vi'
+alias cp='cp -vp'
+alias du='du -kh'
+#alias +='pushd .'
+#alias _='popd'
+alias j='jobs -l'
+alias df='df -kTh'
+#alias d='ls -altr'
+alias l='ls -al'   # show hidden files
+alias lx='ls -lXB'              # sort by extension
+alias lk='ls -lSr'              # sort by size
+alias lc='ls -lcr'              # sort by change time  
+alias lu='ls -lur'              # sort by access time
+alias lr='ls -lR'               # recursive ls
+alias lt='ls -ltr'              # sort by date
+alias lm='ls -al --color | less'        # pipe through 'more'
+alias tree='tree -Csu'          # nice alternative to 'ls'
+alias ll='ls -l'
+#ll(){ ls -l "$@"| egrep "^d" ; ls -lXB "$@" 2>&-| egrep -v "^d|total "; }
+lss(){ for F in ${@:-*} ; do echo $PWD/$F; done | less; }
+
+if [ ! "$LS_COLORS" ] ; then
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+#no longer need; replaced by .inputrc entries - alias r='fc -s'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+cs(){ 
+    cd $1
+    ls
+}
+
+alias o='echo -n "open.sh: "; open.sh'
+
+bak(){
+	cp $1 "$1-`date +%Y%m%d%H%M%S`.bak"
+}
+
+alias mounts='showmount -e'
+mountiso(){
+	DIRNAME=`basename "$1" .iso`
+	mkdir $DIRNAME
+	sudo mount -t iso9660 -o loop -o unhide "$1" $DIRNAME
+}
+
+alias shot='import -window root $HOME/root.jpeg'
+alias tidyxml='tidy -xml -indent -wrap 120'
+alias jsontidy='python -mjson.tool'
+
+
+alias htmlview='$BROWSER'
+alias route='route -n'
+alias apt-get='sudo apt-get'
+alias perlcpan='perl -MCPAN -e shell'
+alias parted='echo "Do not use parted under kernel 2.6 !!"'
+alias tcprob='tcprobe -H 10 -i'
+alias v='vim'
+alias wget='wget --span-hosts --relative --level 2'
+alias dict='which dictd > /dev/null && dictd; dict '
+alias desktop='{ date; wmctrl -l; echo ---; pp; echo ===;} >> ~/desktopState.txt'
+alias printerList='lpstat -p -d'
+
+alias buzz='xterm -e "read -p Done"'
+alias beep_='xterm -e "( speaker-test -t sine -f 1000 )& pid=$! ; sleep 0.5s ; kill -9 $pid"'
+
+whi(){
+	ls -al `which $1`
+}
+
+alias path='echo -e ${PATH//:/\\n}'
+
+dif(){
+    case "$DISPLAY" in
+		:*)
+			xxdiff "$@"
+		;;
+		*:*)
+	    	MY_TERM=xterm xterm.sh -geometry 250x60+0+0 -e vimdiff "$@"
+		;;
+		*)
+			if which colordiff > /dev/null; then
+				colordiff "$@"
+			else
+				diff "$@"
+			fi
+		;;
+	esac
+}
+
+svn() {
+    case "$1" in
+        colordiff)
+            shift;
+            `which svn` diff --diff-cmd colordiff "$@"
+            ;;
+        vimdiff)
+            shift;
+            `which svn` diff --diff-cmd $MY_BIN/direct/svndiff -x vimdiff "$@"
+            ;;
+        xxdiff)
+            shift;
+            `which svn` diff --diff-cmd $MY_BIN/direct/xxdiff-svn.py "$@"
+            ;;
+        *)
+            `which svn` "$@"
+            ;;
+    esac
+}
+
+
+duhome(){
+	local DUDIR=$HOME/NOBACKUP
+   mv -vf $DUDIR/du.log{,.bak}
+	command du -mc ~/ ~/.[a-z]* | sort -n -r | uniq >| $DUDIR/du.log.tmp
+	{ date
+	command du -hc ~/ | grep '^[[:digit:]\.]*[G]' | sort -n -r
+	echo "========  top-level directories under $HOME over 10MB ============"
+	grep "^[[:digit:]\.][[:digit:]\.][[:digit:]\.][[:digit:]\.]*[[:space:]]$HOME"'/[^/]*$' $DUDIR/du.log.tmp | sort -n -r
+	echo "---- all directories over 10MB --"
+	grep '^[[:digit:]\.][[:digit:]\.][[:digit:]\.]' $DUDIR/du.log.tmp | grep -v "$HOME/NOBACKUP/" | grep -v "$HOME/.m2" | sort -n -r
+	} > $DUDIR/du.log
+
+   #ls -lta $HOME/ >> $DUDIR/du.log
+
+	# echo "===================="
+	# cat $DUDIR/du.log
+	#rm -f $DUDIR/du.log.tmp
+   dif $DUDIR/du.log{,.bak}
+}
+
+c(){
+	if [ "$1" ] ; then
+		ARG_TYPE=`type -t "$1"`
+		echo "ARG_TYPE=$ARG_TYPE"
+		if [ -d "$1" ]; then
+			local CDIR="$1"
+		elif [ "$ARG_TYPE" == "file" ]; then
+			local CDIR="$(dirname $(which $1))"
+		else
+			echo "What is $1?"
+		fi
+		cd "$CDIR"
+		return 0
+	fi
+
+	grep -q "$PWD" "$HOME/.pwd-$HOSTNAME" || echo "$PWD" >>"$HOME/.pwd-$HOSTNAME"
+	AUTOSRCDIR="$PWD"
+	while [ ! -f "$AUTOSRCDIR"/autosource ] && [ "$AUTOSRCDIR" ] && [ "$AUTOSRCDIR" != "$HOME" ]; do
+		AUTOSRCDIR="${AUTOSRCDIR%/*}"
+		echo "Searching in: $AUTOSRCDIR"
+	done
+
+	if [ -f "$AUTOSRCDIR/autosource" ]; then
+		if [ "$PWD" = "$AUTOSRCDIR" ] || read -p "About to source $AUTOSRCDIR/autosource:"; then
+			echo "_____________________________________"
+			echo -e "Autosourcing $AUTOSRCDIR/autosource:\e[0;33m"
+			grep "alias" "$AUTOSRCDIR/autosource"
+			grep "()" "$AUTOSRCDIR/autosource"
+			echo -e "\e[0m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+			. "$AUTOSRCDIR"/autosource # need ./ so it does search for autosource in $PATH
+		fi
+	else
+		echo "autosource file not found"
+	fi
+}
+
+vietprint(){
+	# uniprint provided by yudit
+	uniprint -wrap -font $HOME/.fonts/Cyberbit.ttf -size 14 -in $1 -out $1.ps
+}
+
+perlmake(){
+    perl Makefile.PL LIB="$PERL5LIB" PREFIX="$PERL5LIB" || return 1
+    echo "--------------------------------------"
+    make && make test && make install
+}
+
+convert2eps(){
+    local BASE=`basename "$1" .ps`
+    convert "$1" "$BASE.eps"
+    $HOME/bin/latex/bbox_add.pl "$BASE.eps"
+}
+
+alias snotes='crypt.sh sortedText'
+alias asnotes='SNOTES=~/.asnotes.asc GPGID=bl@gmail.com EDITOR=pico crypt.sh sortedText'
+
+alias pt='pstree -n -u -G | highlight "$USER"'
+
+alias sublime='~/localHDD/sublime_text_3/sublime_text'
+alias goog-chrome='google-chrome --disable-web-security'
+
+alias svnIgnore='svn propset svn:ignore -F ~/dev/svnignore .'
+alias mUpParent='mvn versions:update-parent'
+alias mUpParentToSnapshot='mvn versions:update-parent -DallowSnapshots=true'
+alias mLVersions='mvn versions:use-latest-versions' 
+alias mLSnapshots='mvn versions:use-latest-snapshots' 
+alias mDUpdates='mvn versions:display-dependency-updates'
+alias mDUpdatesSnapshots='mvn versions:display-dependency-updates -DallowSnapshots=true'
+alias mDTree='mvn dependency:tree'
+
+function mSVersion(){
+	mvn versions:set -DnewVersion=$*
+}
+
+

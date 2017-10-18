@@ -1,0 +1,18 @@
+# excluded from the includes file
+# public_html/twiki/
+# public_html/twiki-old/
+# public_html/cgi-bin/twikibin*
+# public_html/cgi-bin/test
+
+
+#Dropbox  public_html/protected
+#Dropbox  public_html/cgi-bin/protected/.htaccess
+#Dropbox  public_html/cgi-bin/protected/newAccess.log
+#Dropbox  public_html/tiddly/error_log
+#Dropbox  public_html/tiddly/*.200*.*.html
+#Dropbox  
+#Dropbox  public_html/tiddly/store.php
+
+#public_html/gmap
+
+

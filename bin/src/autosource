@@ -1,0 +1,77 @@
+#!/bin/bash
+
+#		if [ -d $MY_BINSRC -a -r $MY_BINSRC -a -x $MY_BINSRC ] ; then
+#			for i in $MY_BINSRC/* ; do
+#				#[[ ${i##*/} != @(*.bak|*.swp|\#*\#|*.dpkg*|.rpm*) ]] &&
+#					[ -f $i -a -r $i -a -x $i ] && . $i
+#			done
+#		fi
+#		unset i
+		#directory marks package @see $MY_BIN/src/marks
+
+# in case accidentally source ~/bin/autosource; this no longer happens as long as autosource is not in the PATH
+#[ `pwd` != "/home/$USER" && `pwd` != "/root" ] && echo "Autosourcing ~/bin/src/autosource.  Did you want to 'source ./autosource' instead?"
+
+#function loadextras(){
+#	[ -f $MY_BINSRC/functions.src ] && . $MY_BINSRC/functions.src
+#	[ -f $MY_BINSRC/textprocessing.src ] && . $MY_BINSRC/textprocessing.src
+#}
+
+dev_old(){
+	[ -f $MY_BINSRC/initdev.src ] && . $MY_BINSRC/initdev.src
+	if [ -d "$DEV_SRC" ]; then
+		pushd "${DEV_SRC}"
+	fi
+}
+
+#if ps -C java -o user | grep -q -w $USER ; then dev; fi
+
+. $MY_BINSRC/functions.src
+# . $MY_BINSRC/initcvs.src
+#. $MY_BINSRC/marks && initmarks
+. $MY_BINSRC/bashDirB.src
+
+m4aTomp3(){
+	#!/bin/bash
+	#
+	# Dump m4a to mp3
+
+	for i in *.m4a
+	do
+		if [ -f "$i" ]; then
+			rm -f "$i.wav"
+			mkfifo "$i.wav"
+			mplayer "$i" -ao pcm:file="$i.wav" &
+			dest=`echo "$i"|sed -e 's/m4a$/mp3/'`
+			lame "$i.wav" "$dest"
+		fi
+	done
+}
+
+# for shell automation, see 'expect'
+# 'set -x' for debugging
+
+_completionCapable(){
+	which $1 &> /dev/null || { echo -e "\n $1 not found"; return 1; }
+	local COMPLETION_CMD RETVAL FUNCNAME
+	COMPLETION_CMD=`$1 --completionCommand$COMPLETION_OPT`
+	RETVAL=$?
+	if [ "$RETVAL" -eq "$COMPLETION_OPT" ]; then
+		eval "$COMPLETION_CMD"
+	fi
+	# echo $COMPLETION_CMD $RETVAL
+}
+
+# createCompletionFunction $MY_BIN/samba.sh
+if [ "$COMPLETION_OPT" ]; then
+	export CREATE_COMPLETION_SCRIPT="$MY_BINSRC/createCompletionFunc.sh"
+	complete -F _completionCapable neededToPreventSegFault samba.sh dock.sh
+	# createCompletionFunction $MY_BIN/dock.sh --alias "dock.sh dock"
+
+	#complete -W "alias arrayvar binding command directory disabled enabled export file function group helptopic hostname job keyword running service setopt shopt signal stopped user variable" compgen
+
+fi
+
+
+
+

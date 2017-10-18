@@ -1,0 +1,7 @@
+# work
+Desktop/
+#.mbox/
+#.jedit/
+#texmf/
+#dev/
+

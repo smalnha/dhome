@@ -1,0 +1,126 @@
+#!/bin/bash
+# When bash is started non-interactively, to run a shell script, for example, it sources $BASH_ENV
+
+# Presuming an interactive shell uses all non-interactive environment variables, 
+# this file is sourced by .bash_profile
+
+# Variables defined here are needed by non-interactive shells
+
+if [ "$MY_BIN" ]; then
+	: echo "  .bash_noninter not needed: $SHLVL : `date +%D-%T` : $0 $*" >> ${MY_LOG:=~/init.log}	
+else
+	if [ "$MY_LOG" ]; then
+		#sourced by .bash_profile
+		: echo "   .bash_noninter: $SHLVL: $HOSTNAME : `date +%D-%T` : $0 $*" >> ${MY_LOG}
+	else
+		: echo "{.bash_noninter: WHEN? : $SHLVL: $HOSTNAME : `date +%D-%T` : $0 $*" >> ${MY_LOG:=~/init.log}
+	fi
+
+	# BASH_ENV is called too many times unnecessarily; let's not set BASH_ENV
+	# BASH_ENV should point to this file
+	#: ${BASH_ENV:=~/.bash_noninter}
+	#export BASH_ENV
+
+	# : ${HOME:=$PWD}
+
+	# time zone
+	# recheck usage, if needed: [ "$TZ" ] || export TZ='America/Chicago'
+
+	export MY_BIN=$HOME/bin
+	export MY_TOOLS=$HOME/.my_tools
+
+	#export PERL5LIB="$HOME/usr/lib/perl5:$HOME/usr/lib/perl5/site_perl:$HOME/usr/lib/perl/5.8.7/:$HOME/usr/lib/perl/5.8:$HOME/usr/share/perl/5.8.7"
+
+	export PATH CDPATH
+#	removeDuplicatePaths(){
+#		for P in ${1//:/ }; do 
+#			echo $P
+#		done
+#	}
+	#PATH=`removeDuplicatePaths $PATH`
+
+	if [ "$SHELL" != /bin/sh ] ; then
+		addToMyPath(){
+			local PATHVAR="PATH"
+			local insertInFront=""
+			local outcommand=""
+			for arg; do
+				case "$arg" in
+				-var) shift; PATHVAR="$1"; shift;; # possible values: PATH CDPATH
+				-f) shift; insertInFront="true";;
+				-c) shift; outcommand="true";;
+				esac
+			done
+
+			while [ $# -gt 0 ]; do
+				pathToAdd="${1%\/}" # gets rid of trailing /
+				shift
+				if [ -z "$pathToAdd" ] ; then continue; fi
+				if [ ! -d "$pathToAdd" ]; then
+					echo "$0: addToMyPath($pathToAdd): Directory does not exist!" >&2
+					continue
+				fi
+	#	 echo $#: pathToAdd=$pathToAdd  to $PATHVAR
+				local CURR_PATH=`printenv $PATHVAR`
+				#echo "CURR_PATH   = $CURR_PATH"
+				if [ "$insertInFront" ] ; then
+					#remove from current PATHVAR
+					local PATH_REMOVED=`echo "$CURR_PATH:" | { while read -d: P; do if [ "$P" != "$pathToAdd" ]; then echo -n ":$P"; fi; done; }`
+					#echo "removing $pathToAdd"
+					#echo "PATH_REMOVED=$PATH_REMOVED"
+					eval $PATHVAR=\"$pathToAdd$PATH_REMOVED\"
+				else
+					# add to the end, if it doesn't already exist
+					case "$CURR_PATH" in 
+						"")
+							eval $PATHVAR=\"$pathToAdd\"
+						;;
+						*:$pathToAdd:* | $pathToAdd:* | *:$pathToAdd | $pathToAdd ) 
+		#					echo "Already exists in \$$PATHVAR: $pathToAdd" >&1
+						;; 
+						*)
+							# safer to append it to the end by default so existing commands aren't overridden
+							eval $PATHVAR=\"\$$PATHVAR:$pathToAdd\"
+						;;
+					esac
+				fi
+			done
+			[ "$outcommand" ] && eval echo "export $PATHVAR=\$$PATHVAR"
+		}
+		# export -f addToMyPath
+
+
+		# add this to the front
+		#[ -d "$MY_BIN/online" ] && addToMyPath -f "$MY_BIN/online"
+		[ -d "$MY_BIN" ] && addToMyPath -f "$MY_BIN"
+
+		# PATH is being reset by an X startup script
+		# PATH needed for xterm.sh called by .xsession and apps called by ~/.xautostart
+		#echo "	PATH=$PATH" >> ${MY_LOG}
+		#[ -d "/usr/local/X11R6.8/bin" ] && addToMyPath -f "/usr/local/X11R6.8/bin"  # xorg
+		#[ -d "/usr/X11R6/bin" ] && addToMyPath "/usr/X11R6/bin"  # ubuntu
+		#addToMyPath -f "/usr/local/sbin"
+		[ -d "$MY_BIN/$HOSTNAME" ] && addToMyPath -f "$MY_BIN/$HOSTNAME"
+		[ -d "$MY_BIN/local" ] && addToMyPath -f "$MY_BIN/local"
+
+		# needed for Hadoop scripts
+		if [ -z "$JAVA_HOME" ]; then 
+			for D in "$MY_TOOLS"/java_home "/usr/java/latest" "/usr/lib/jvm/SDK/jdk"; do
+				if [ -d "$D/bin" ]; then
+					export JAVA_HOME="$D"
+					break;
+				fi
+			done
+
+			addToMyPath -f "$JAVA_HOME/bin" 
+		fi
+
+		unset -f addToMyPath
+	fi
+
+	[ -d "$MY_TOOLS/m2_home" ] && export M2_HOME="$MY_TOOLS/m2_home"
+
+fi
+
+
+

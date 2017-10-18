@@ -1,0 +1,16 @@
+
+# server-dependent
+#.lpoptions
+#.lpoptions.home
+#.lpoptions.lab
+#.my_cvs
+#.mycrontab
+#.my_backup/
+#Mail/
+#.cxoffice
+#Perl
+#  .cpan/CPAN/MyConfig.pm
+#lib
+#share
+
+

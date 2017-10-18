@@ -1,0 +1,831 @@
+
+application/msproject mpp
+
+application/pdf pdf
+application/postscript ps eps ai ps.gz
+application/x-compressed-tar tgz
+application/x-shellscript sh
+application/x-compress  Z
+application/x-cpio  cpio
+application/x-csh  csh
+application/x-dvi  dvi
+application/x-gtar  gtar
+application/x-gzip  gz
+application/x-httpd-cgi  cgi
+application/x-latex  latex
+
+application/x-tar  tar
+application/x-tcl  tcl
+application/x-tex  tex
+application/zip   zip
+
+application/x-stuffit  sit
+application/x-sh  sh
+
+video/mpeg   mpeg mpg mpe
+video/quicktime   qt mov
+video/x-msvideo   avi wmv
+video/vob 	vob
+video/flash flv swf
+
+audio/x-ogg ogg
+audio/x-mp3 mp3
+audio/mpeg   mpga mp2
+audio/x-realaudio  ra
+# Microsoft Media Services
+audio/mms wma
+
+image/xcf   xcf
+image/svg   svg
+image/svgz  svgz
+image/x-portable-anymap  pnm
+image/x-portable-bitmap  pbm
+image/x-portable-graymap pgm
+image/x-portable-pixmap  ppm
+image/x-rgb   rgb
+image/x-xbitmap   xbm
+image/x-xpixmap   xpm
+image/x-xwindowdump  xwd
+image xpm bmp ppm
+image/png png
+image/jpg jpg
+image/jpeg jpeg
+image/gif gif
+
+text/html html htm
+text/plain txt log
+text/plain   txt
+text/richtext   rtx
+text/x-sgml   sgml sgm
+text/md5   md5
+
+application/dia  dia
+
+application/gdesklet display
+
+x-world/x-vrml   wrl vrml
+
+audio/x-pn-realaudio rmm ram
+audio/vnd.rn-realaudio ra
+application/smil smi smil
+text/vnd.rn-realtext rt
+video/vnd.rn-realvideo rv
+image/vnd.rn-realflash rf swf
+application/x-shockwave-flash2-preview rf swf
+application/sdp sdp
+application/x-sdp sdp
+application/vnd.rn-realmedia rm
+image/vnd.rn-realpix rp
+audio/wav wav
+audio/x-wav wav
+audio/x-pn-wav wav
+audio/x-pn-windows-acm wav
+audio/basic au
+audio/x-pn-au au
+audio/aiff aiff af
+audio/x-aiff aiff af
+audio/x-pn-aiff aiff af
+
+text/xml.uml uxf
+
+application/gpg asc
+
+application/vnd.sun.xml.writer sxw
+application/vnd.sun.xml.writer.template stw
+application/vnd.sun.xml.writer.global sxg
+application/vnd.stardivision.writer sdw vor
+application/vnd.stardivision.writer-global sgl
+application/vnd.sun.xml.calc sxc
+application/vnd.sun.xml.calc.template stc
+application/vnd.stardivision.calc sdc
+application/vnd.sun.xml.impress sxi
+application/vnd.sun.xml.impress.template sti
+application/vnd.stardivision.impress sdd sdp
+application/vnd.sun.xml.draw sxd
+application/vnd.sun.xml.draw.template std
+application/vnd.stardivision.draw sda
+application/vnd.sun.xml.math sxm
+application/vnd.stardivision.math smf
+application/vnd.sun.xml.writer sxw
+application/vnd.sun.xml.writer.template stw
+application/vnd.sun.xml.writer.global sxg
+application/vnd.stardivision.writer sdw vor
+application/vnd.stardivision.writer-global sgl
+application/vnd.sun.xml.calc sxc
+application/vnd.sun.xml.calc.template stc
+application/vnd.stardivision.calc sdc
+application/vnd.sun.xml.impress sxi
+application/vnd.sun.xml.impress.template sti
+application/vnd.stardivision.impress sdd sdp
+application/vnd.sun.xml.draw sxd
+application/vnd.sun.xml.draw.template std
+application/vnd.stardivision.draw sda
+application/vnd.sun.xml.math sxm
+application/vnd.stardivision.math smf
+application/vnd.sun.xml.writer sxw
+application/vnd.sun.xml.writer.template stw
+application/vnd.sun.xml.writer.global sxg
+application/vnd.stardivision.writer sdw vor
+application/vnd.stardivision.writer-global sgl
+application/vnd.sun.xml.calc sxc
+application/vnd.sun.xml.calc.template stc
+application/vnd.stardivision.calc sdc
+application/vnd.sun.xml.impress sxi
+application/vnd.sun.xml.impress.template sti
+application/vnd.stardivision.impress sdd sdp
+application/vnd.sun.xml.draw sxd
+application/vnd.sun.xml.draw.template std
+application/vnd.stardivision.draw sda
+application/vnd.sun.xml.math sxm
+application/vnd.stardivision.math smf
+
+application/rtf rtf
+application/powerpoint ppt
+application/excel xls
+application/document doc
+
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet    xlsx
+application/vnd.openxmlformats-officedocument.spreadsheetml.template    xltx
+application/vnd.openxmlformats-officedocument.presentationml.presentation  pptx
+application/vnd.openxmlformats-officedocument.presentationml.slideshow     ppsx
+application/vnd.openxmlformats-officedocument.presentationml.template      potx
+application/vnd.openxmlformats-officedocument.wordprocessingml.document    docx
+application/vnd.openxmlformats-officedocument.wordprocessingml.template    dotx
+
+application/opendocumentdocument odt
+application/opendocumentspreadsheet ods
+application/opendocumentpresentation odp
+
+application/gnumeric gnumeric
+
+application/jar jar
+application/war war
+
+application/x-java-jnlp-file jnlp
+type=application/x-java-jnlp-file desc="Java Web Start" exts="jnlp"
+
+type=application/vnd.ms-powerpoint \
+desc=Microsoft PowerPoint Presentation \
+exts=""
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_vnd.ms-powerpoint=application_vnd.ms-powerpoint::new;application_vnd.ms-powerpoint;application_vnd.ms-powerpoint::show;application_vnd.ms-powerpoint::print;application_vnd.ms-powerpoint::open
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_vnd.ms-powerpoint=application_vnd.ms-powerpoint::new;application_vnd.ms-powerpoint;application_vnd.ms-powerpoint::show;application_vnd.ms-powerpoint::print;application_vnd.ms-powerpoint::open
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_vnd.ms-powerpoint=application_vnd.ms-powerpoint::new;application_vnd.ms-powerpoint;application_vnd.ms-powerpoint::show;application_vnd.ms-powerpoint::print;application_vnd.ms-powerpoint::open
+
+type=application/msword \
+desc=Microsoft Word Document \
+exts=""
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_msword=application_msword::open;application_msword::openasreadonly;application_msword::edit;application_msword::print;application_msword;application_msword::new
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_msword=application_msword::open;application_msword::openasreadonly;application_msword::edit;application_msword::print;application_msword;application_msword::new
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_msword=application_msword::open;application_msword::openasreadonly;application_msword::edit;application_msword::print;application_msword;application_msword::new
+
+type=image/gif \
+desc=GIF Image \
+exts=""
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:image_gif=image_gif
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:image_gif=image_gif
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:image_gif=image_gif
+# X-Created-By-mcap-cxoffice-5e9970a5-be60-4ab7-b11c-cab00afa47d3:image_gif=image_gif
+type=image/jpeg \
+desc=JPEG Image \
+exts=""
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:image_jpeg=image_jpeg
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:image_jpeg=image_jpeg
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:image_jpeg=image_jpeg
+# X-Created-By-mcap-cxoffice-5e9970a5-be60-4ab7-b11c-cab00afa47d3:image_jpeg=image_jpeg
+type=image/png \
+desc=PNG Image \
+exts=""
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:image_png=image_png
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:image_png=image_png
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:image_png=image_png
+# X-Created-By-mcap-cxoffice-5e9970a5-be60-4ab7-b11c-cab00afa47d3:image_png=image_png
+type=image/tiff \
+desc=Microsoft Office Document Imaging File \
+exts=""
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:image_tiff=image_tiff::print;image_tiff
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:image_tiff=image_tiff::print;image_tiff
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:image_tiff=image_tiff::print;image_tiff
+
+type=application/x-crossover-gif \
+desc=GIF Image \
+exts="gif"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-gif=image_gif
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-gif=image_gif
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-gif=image_gif
+# X-Created-By-mcap-cxoffice-5e9970a5-be60-4ab7-b11c-cab00afa47d3:application_x-crossover-gif=image_gif
+type=application/x-crossover-jpg \
+desc=JPEG Image \
+exts="jpg"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-jpg=image_jpeg
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-jpg=image_jpeg
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-jpg=image_jpeg
+# X-Created-By-mcap-cxoffice-5e9970a5-be60-4ab7-b11c-cab00afa47d3:application_x-crossover-jpg=image_jpeg
+type=application/x-crossover-jpeg \
+desc=JPEG Image \
+exts="jpeg"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-jpeg=image_jpeg
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-jpeg=image_jpeg
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-jpeg=image_jpeg
+# X-Created-By-mcap-cxoffice-5e9970a5-be60-4ab7-b11c-cab00afa47d3:application_x-crossover-jpeg=image_jpeg
+type=application/x-crossover-jpe \
+desc=JPEG Image \
+exts="jpe"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-jpe=image_jpeg
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-jpe=image_jpeg
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-jpe=image_jpeg
+# X-Created-By-mcap-cxoffice-5e9970a5-be60-4ab7-b11c-cab00afa47d3:application_x-crossover-jpe=image_jpeg
+type=application/x-crossover-msi \
+desc="Windows Installer Package" \
+exts="msi"
+# X-Created-By-mcap-cxoffice-0:application_x-crossover-msi=application_x-crossover-msi::install
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-msi=application_x-crossover-msi::uninstall;application_x-crossover-msi::repair;application_x-crossover-msi
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-msi=application_x-crossover-msi::uninstall;application_x-crossover-msi::repair;application_x-crossover-msi
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-msi=application_x-crossover-msi::uninstall;application_x-crossover-msi::repair;application_x-crossover-msi
+# X-Created-By-mcap-cxoffice-5e9970a5-be60-4ab7-b11c-cab00afa47d3:application_x-crossover-msi=application_x-crossover-msi::uninstall;application_x-crossover-msi::repair;application_x-crossover-msi
+type=application/x-crossover-png \
+desc=PNG Image \
+exts="png"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-png=image_png
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-png=image_png
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-png=image_png
+# X-Created-By-mcap-cxoffice-5e9970a5-be60-4ab7-b11c-cab00afa47d3:application_x-crossover-png=image_png
+type=application/x-crossover-xlk \
+desc=Microsoft Office Excel Backup File \
+exts="xlk"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-xlk=application_vnd.ms-excel;application_vnd.ms-excel::print
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-xlk=application_vnd.ms-excel;application_vnd.ms-excel::print
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-xlk=application_vnd.ms-excel;application_vnd.ms-excel::print
+type=application/x-crossover-xlb \
+desc=Microsoft Excel Worksheet \
+exts="xlb"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-xlb=application_vnd.ms-excel::openasreadonly;application_vnd.ms-excel::new;application_vnd.ms-excel;application_vnd.ms-excel::print
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-xlb=application_vnd.ms-excel::openasreadonly;application_vnd.ms-excel::new;application_vnd.ms-excel;application_vnd.ms-excel::print
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-xlb=application_vnd.ms-excel::openasreadonly;application_vnd.ms-excel::new;application_vnd.ms-excel;application_vnd.ms-excel::print
+type=application/x-crossover-xlc \
+desc=Microsoft Excel Chart \
+exts="xlc"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-xlc=application_vnd.ms-excel::new;application_vnd.ms-excel;application_vnd.ms-excel::print
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-xlc=application_vnd.ms-excel::new;application_vnd.ms-excel;application_vnd.ms-excel::print
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-xlc=application_vnd.ms-excel::new;application_vnd.ms-excel;application_vnd.ms-excel::print
+type=application/x-crossover-dif \
+desc=Microsoft Office Excel Data Interchange Format \
+exts="dif"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-dif=application_vnd.ms-excel
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-dif=application_vnd.ms-excel
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-dif=application_vnd.ms-excel
+type=application/x-crossover-csv \
+desc=Microsoft Office Excel Comma Separated Values File \
+exts="csv"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-csv=application_vnd.ms-excel;application_vnd.ms-excel::print
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-csv=application_vnd.ms-excel;application_vnd.ms-excel::print
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-csv=application_vnd.ms-excel;application_vnd.ms-excel::print
+type=application/x-crossover-xll \
+desc=Microsoft Office Excel XLL Add-In \
+exts="xll"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-xll=application_vnd.ms-excel
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-xll=application_vnd.ms-excel
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-xll=application_vnd.ms-excel
+type=application/x-crossover-xlt \
+desc=Microsoft Office Excel Template \
+exts="xlt"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-xlt=application_vnd.ms-excel::open;application_vnd.ms-excel;application_vnd.ms-excel::print
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-xlt=application_vnd.ms-excel::open;application_vnd.ms-excel;application_vnd.ms-excel::print
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-xlt=application_vnd.ms-excel::open;application_vnd.ms-excel;application_vnd.ms-excel::print
+type=application/x-crossover-xlw \
+desc=Microsoft Office Excel Workspace \
+exts="xlw"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-xlw=application_vnd.ms-excel::new;application_vnd.ms-excel
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-xlw=application_vnd.ms-excel::new;application_vnd.ms-excel
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-xlw=application_vnd.ms-excel::new;application_vnd.ms-excel
+type=application/x-crossover-slk \
+desc=Microsoft Office Excel SLK Data Import Format \
+exts="slk"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-slk=application_vnd.ms-excel
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-slk=application_vnd.ms-excel
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-slk=application_vnd.ms-excel
+type=application/x-crossover-xls \
+desc=Microsoft Excel Worksheet \
+exts="xls"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-xls=application_vnd.ms-excel::openasreadonly;application_vnd.ms-excel::new;application_vnd.ms-excel;application_vnd.ms-excel::print
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-xls=application_vnd.ms-excel::openasreadonly;application_vnd.ms-excel::new;application_vnd.ms-excel;application_vnd.ms-excel::print
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-xls=application_vnd.ms-excel::openasreadonly;application_vnd.ms-excel::new;application_vnd.ms-excel;application_vnd.ms-excel::print
+type=application/x-crossover-xlm \
+desc=Microsoft Excel 4.0 Macro \
+exts="xlm"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-xlm=application_vnd.ms-excel::new;application_vnd.ms-excel;application_vnd.ms-excel::print
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-xlm=application_vnd.ms-excel::new;application_vnd.ms-excel;application_vnd.ms-excel::print
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-xlm=application_vnd.ms-excel::new;application_vnd.ms-excel;application_vnd.ms-excel::print
+type=application/x-crossover-xla \
+desc=Microsoft Office Excel Add-In \
+exts="xla"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-xla=application_vnd.ms-excel
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-xla=application_vnd.ms-excel
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-xla=application_vnd.ms-excel
+type=application/vnd.ms-excel \
+desc=Microsoft Excel Worksheet \
+exts=""
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_vnd.ms-excel=application_vnd.ms-excel::openasreadonly;application_vnd.ms-excel::open;application_vnd.ms-excel::new;application_vnd.ms-excel;application_vnd.ms-excel::print
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_vnd.ms-excel=application_vnd.ms-excel::openasreadonly;application_vnd.ms-excel::open;application_vnd.ms-excel::new;application_vnd.ms-excel;application_vnd.ms-excel::print
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_vnd.ms-excel=application_vnd.ms-excel::openasreadonly;application_vnd.ms-excel::open;application_vnd.ms-excel::new;application_vnd.ms-excel;application_vnd.ms-excel::print
+type=application/msexcel \
+desc=Microsoft Excel Worksheet \
+exts=""
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_msexcel=application_vnd.ms-excel::openasreadonly;application_vnd.ms-excel::open;application_vnd.ms-excel::new;application_vnd.ms-excel;application_vnd.ms-excel::print
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_msexcel=application_vnd.ms-excel::openasreadonly;application_vnd.ms-excel::open;application_vnd.ms-excel::new;application_vnd.ms-excel;application_vnd.ms-excel::print
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_msexcel=application_vnd.ms-excel::openasreadonly;application_vnd.ms-excel::open;application_vnd.ms-excel::new;application_vnd.ms-excel;application_vnd.ms-excel::print
+type=application/x-crossover-dic \
+desc=application/x-crossover-dic \
+exts="dic"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-dic=application_x-crossover-dic::print;application_x-crossover-dic
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-dic=application_x-crossover-dic::print;application_x-crossover-dic
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-dic=application_x-crossover-dic::print;application_x-crossover-dic
+type=application/x-crossover-rtf \
+desc=Rich Text Format \
+exts="rtf"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-rtf=application_msword::edit;application_msword::print;application_msword;application_msword::new
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-rtf=application_msword::edit;application_msword::print;application_msword;application_msword::new
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-rtf=application_msword::edit;application_msword::print;application_msword;application_msword::new
+type=application/x-crossover-dot \
+desc=Microsoft Word Template \
+exts="dot"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-dot=application_msword::open;application_msword::print;application_msword
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-dot=application_msword::open;application_msword::print;application_msword
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-dot=application_msword::open;application_msword::print;application_msword
+type=application/x-crossover-wbk \
+desc=Microsoft Word Backup Document \
+exts="wbk"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-wbk=application_msword::print;application_msword;application_msword::new
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-wbk=application_msword::print;application_msword;application_msword::new
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-wbk=application_msword::print;application_msword;application_msword::new
+type=application/vnd.ms-word \
+desc=Microsoft Word Document \
+exts=""
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_vnd.ms-word=application_msword::open;application_msword::openasreadonly;application_msword::edit;application_msword::print;application_msword;application_msword::new
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_vnd.ms-word=application_msword::open;application_msword::openasreadonly;application_msword::edit;application_msword::print;application_msword;application_msword::new
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_vnd.ms-word=application_msword::open;application_msword::openasreadonly;application_msword::edit;application_msword::print;application_msword;application_msword::new
+type=application/x-crossover-wiz \
+desc=Microsoft Word Wizard \
+exts="wiz"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-wiz=application_msword::new
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-wiz=application_msword::new
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-wiz=application_msword::new
+type=application/x-crossover-dochtml \
+desc=Microsoft Word HTML Document \
+exts="dochtml"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-dochtml=application_x-crossover-dochtml
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-dochtml=application_x-crossover-dochtml
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-dochtml=application_x-crossover-dochtml
+type=application/x-crossover-docxml \
+desc=Microsoft Word XML Document \
+exts="docxml"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-docxml=application_x-crossover-docxml::edit
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-docxml=application_x-crossover-docxml::edit
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-docxml=application_x-crossover-docxml::edit
+type=application/x-crossover-dothtml \
+desc=Microsoft Word HTML Template \
+exts="dothtml"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-dothtml=application_x-crossover-dothtml
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-dothtml=application_x-crossover-dothtml
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-dothtml=application_x-crossover-dothtml
+type=application/x-crossover-dqy \
+desc=Microsoft Office Excel ODBC Query files \
+exts="dqy"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-dqy=application_x-crossover-dqy;application_x-crossover-dqy::edit^5fquery^5fin^5fnotepad
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-dqy=application_x-crossover-dqy;application_x-crossover-dqy::edit^5fquery^5fin^5fnotepad
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-dqy=application_x-crossover-dqy;application_x-crossover-dqy::edit^5fquery^5fin^5fnotepad
+type=application/x-crossover-exc \
+desc=application/x-crossover-exc \
+exts="exc"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-exc=application_x-crossover-exc::print;application_x-crossover-exc
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-exc=application_x-crossover-exc::print;application_x-crossover-exc
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-exc=application_x-crossover-exc::print;application_x-crossover-exc
+type=application/x-crossover-iqy \
+desc=Microsoft Office Excel Web Query File \
+exts="iqy"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-iqy=text_x-ms-iqy;text_x-ms-iqy::edit^5fquery^5fin^5fnotepad
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-iqy=text_x-ms-iqy;text_x-ms-iqy::edit^5fquery^5fin^5fnotepad
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-iqy=text_x-ms-iqy;text_x-ms-iqy::edit^5fquery^5fin^5fnotepad
+type=text/x-ms-iqy \
+desc=Microsoft Office Excel Web Query File \
+exts=""
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:text_x-ms-iqy=text_x-ms-iqy;text_x-ms-iqy::edit^5fquery^5fin^5fnotepad
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:text_x-ms-iqy=text_x-ms-iqy;text_x-ms-iqy::edit^5fquery^5fin^5fnotepad
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:text_x-ms-iqy=text_x-ms-iqy;text_x-ms-iqy::edit^5fquery^5fin^5fnotepad
+type=application/x-crossover-mdi \
+desc=Microsoft Office Document Imaging File \
+exts="mdi"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-mdi=image_vnd.ms-modi;image_vnd.ms-modi::print
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-mdi=image_vnd.ms-modi;image_vnd.ms-modi::print
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-mdi=image_vnd.ms-modi;image_vnd.ms-modi::print
+type=image/vnd.ms-modi \
+desc=Microsoft Office Document Imaging File \
+exts=""
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:image_vnd.ms-modi=image_vnd.ms-modi;image_vnd.ms-modi::print
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:image_vnd.ms-modi=image_vnd.ms-modi;image_vnd.ms-modi::print
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:image_vnd.ms-modi=image_vnd.ms-modi;image_vnd.ms-modi::print
+type=application/x-crossover-mht \
+desc=MHTML Document \
+exts="mht"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-mht=message_rfc822::print;message_rfc822::edit
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-mht=message_rfc822::print;message_rfc822::edit
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-mht=message_rfc822::open;message_rfc822::print;message_rfc822::edit;message_rfc822
+type=application/x-crossover-mhtml \
+desc=MHTML Document \
+exts="mhtml"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-mhtml=message_rfc822::print;message_rfc822::edit
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-mhtml=message_rfc822::print;message_rfc822::edit
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-mhtml=message_rfc822::open;message_rfc822::print;message_rfc822::edit;message_rfc822
+type=message/rfc822 \
+desc=MHTML Document \
+exts=""
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:message_rfc822=message_rfc822::print;message_rfc822::edit
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:message_rfc822=message_rfc822::print;message_rfc822::edit
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:message_rfc822=message_rfc822::open;message_rfc822::print;message_rfc822::edit;message_rfc822
+type=application/x-crossover-mpf \
+desc=Clip Organizer Media Package File \
+exts="mpf"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-mpf=application_vnd.ms-mediapackage::open
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-mpf=application_vnd.ms-mediapackage
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-mpf=application_vnd.ms-mediapackage
+type=application/vnd.ms-mediapackage \
+desc=Clip Organizer Media Package File \
+exts=""
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_vnd.ms-mediapackage=application_vnd.ms-mediapackage::open
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_vnd.ms-mediapackage=application_vnd.ms-mediapackage
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_vnd.ms-mediapackage=application_vnd.ms-mediapackage
+type=application/x-crossover-obd \
+desc=application/x-crossover-obd \
+exts="obd"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-obd=application_x-crossover-obd
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-obd=application_x-crossover-obd
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-obd=application_x-crossover-obd
+type=application/x-crossover-obt \
+desc=application/x-crossover-obt \
+exts="obt"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-obt=application_x-crossover-obt
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-obt=application_x-crossover-obt
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-obt=application_x-crossover-obt
+type=application/x-crossover-obz \
+desc=application/x-crossover-obz \
+exts="obz"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-obz=application_x-crossover-obz
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-obz=application_x-crossover-obz
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-obz=application_x-crossover-obz
+type=application/x-crossover-odc \
+desc=Microsoft Office Data Connection \
+exts="odc"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-odc=text_x-ms-odc::edit;text_x-ms-odc::analyze;text_x-ms-odc
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-odc=text_x-ms-odc::edit;text_x-ms-odc::analyze;text_x-ms-odc
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-odc=text_x-ms-odc::edit;text_x-ms-odc::analyze;text_x-ms-odc
+type=text/x-ms-odc \
+desc=Microsoft Office Data Connection \
+exts=""
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:text_x-ms-odc=text_x-ms-odc::edit;text_x-ms-odc::analyze;text_x-ms-odc
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:text_x-ms-odc=text_x-ms-odc::edit;text_x-ms-odc::analyze;text_x-ms-odc
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:text_x-ms-odc=text_x-ms-odc::edit;text_x-ms-odc::analyze;text_x-ms-odc
+type=application/x-crossover-oqy \
+desc=Microsoft Office Excel OLAP Query File \
+exts="oqy"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-oqy=application_x-crossover-oqy::edit^5fquery^5fin^5fnotepad;application_x-crossover-oqy
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-oqy=application_x-crossover-oqy::edit^5fquery^5fin^5fnotepad;application_x-crossover-oqy
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-oqy=application_x-crossover-oqy::edit^5fquery^5fin^5fnotepad;application_x-crossover-oqy
+type=application/x-crossover-pwz \
+desc=Microsoft PowerPoint Wizard \
+exts="pwz"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-pwz=application_vnd.ms-powerpoint
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-pwz=application_vnd.ms-powerpoint
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-pwz=application_vnd.ms-powerpoint
+type=application/x-crossover-pps \
+desc=Microsoft PowerPoint Slide Show \
+exts="pps"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-pps=application_vnd.ms-powerpoint::new;application_vnd.ms-powerpoint;application_vnd.ms-powerpoint::print
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-pps=application_vnd.ms-powerpoint::new;application_vnd.ms-powerpoint;application_vnd.ms-powerpoint::print
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-pps=application_vnd.ms-powerpoint::new;application_vnd.ms-powerpoint;application_vnd.ms-powerpoint::print
+type=application/x-crossover-pot \
+desc=Microsoft PowerPoint Template \
+exts="pot"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-pot=application_vnd.ms-powerpoint;application_vnd.ms-powerpoint::show;application_vnd.ms-powerpoint::print;application_vnd.ms-powerpoint::open
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-pot=application_vnd.ms-powerpoint;application_vnd.ms-powerpoint::show;application_vnd.ms-powerpoint::print;application_vnd.ms-powerpoint::open
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-pot=application_vnd.ms-powerpoint;application_vnd.ms-powerpoint::show;application_vnd.ms-powerpoint::print;application_vnd.ms-powerpoint::open
+type=application/x-crossover-ppt \
+desc=Microsoft PowerPoint Presentation \
+exts="ppt"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-ppt=application_vnd.ms-powerpoint::new;application_vnd.ms-powerpoint;application_vnd.ms-powerpoint::show;application_vnd.ms-powerpoint::print
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-ppt=application_vnd.ms-powerpoint::new;application_vnd.ms-powerpoint;application_vnd.ms-powerpoint::show;application_vnd.ms-powerpoint::print
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-ppt=application_vnd.ms-powerpoint::new;application_vnd.ms-powerpoint;application_vnd.ms-powerpoint::show;application_vnd.ms-powerpoint::print
+type=application/x-crossover-ppa \
+desc=Microsoft PowerPoint Addin \
+exts="ppa"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-ppa=application_vnd.ms-powerpoint
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-ppa=application_vnd.ms-powerpoint
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-ppa=application_vnd.ms-powerpoint
+type=application/x-crossover-pothtml \
+desc=Microsoft PowerPoint HTML Template \
+exts="pothtml"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-pothtml=application_x-crossover-pothtml
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-pothtml=application_x-crossover-pothtml
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-pothtml=application_x-crossover-pothtml
+type=application/x-crossover-ppthtml \
+desc=Microsoft PowerPoint HTML Document \
+exts="ppthtml"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-ppthtml=application_x-crossover-ppthtml
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-ppthtml=application_x-crossover-ppthtml
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-ppthtml=application_x-crossover-ppthtml
+type=application/x-crossover-rqy \
+desc=Microsoft Office Excel OLE DB Query files \
+exts="rqy"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-rqy=text_x-ms-rqy;text_x-ms-rqy::edit^5fquery^5fin^5fnotepad
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-rqy=text_x-ms-rqy;text_x-ms-rqy::edit^5fquery^5fin^5fnotepad
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-rqy=text_x-ms-rqy;text_x-ms-rqy::edit^5fquery^5fin^5fnotepad
+type=text/x-ms-rqy \
+desc=Microsoft Office Excel OLE DB Query files \
+exts=""
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:text_x-ms-rqy=text_x-ms-rqy;text_x-ms-rqy::edit^5fquery^5fin^5fnotepad
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:text_x-ms-rqy=text_x-ms-rqy;text_x-ms-rqy::edit^5fquery^5fin^5fnotepad
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:text_x-ms-rqy=text_x-ms-rqy;text_x-ms-rqy::edit^5fquery^5fin^5fnotepad
+type=application/x-crossover-tif \
+desc=Microsoft Office Document Imaging File \
+exts="tif"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-tif=image_tiff::print;image_tiff
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-tif=image_tiff::print;image_tiff
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-tif=image_tiff::print;image_tiff
+type=application/x-crossover-tiff \
+desc=Microsoft Office Document Imaging File \
+exts="tiff"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-tiff=image_tiff::print;image_tiff
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-tiff=image_tiff::print;image_tiff
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-tiff=image_tiff::print;image_tiff
+type=application/x-crossover-xlshtml \
+desc=Microsoft Office Excel HTML Document \
+exts="xlshtml"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-xlshtml=application_x-crossover-xlshtml
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-xlshtml=application_x-crossover-xlshtml
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-xlshtml=application_x-crossover-xlshtml
+type=application/x-crossover-xlthtml \
+desc=Microsoft Office Excel HTML Template \
+exts="xlthtml"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-xlthtml=application_x-crossover-xlthtml
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-xlthtml=application_x-crossover-xlthtml
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-xlthtml=application_x-crossover-xlthtml
+type=application/x-crossover-msp \
+desc=Windows Installer Patch \
+exts="msp"
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-msp=application_x-crossover-msp
+type=image/pjpeg \
+desc=JPEG Image \
+exts=""
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:image_pjpeg=image_pjpeg
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:image_pjpeg=image_pjpeg
+type=application/x-crossover-cat \
+desc=Security Catalog \
+exts="cat"
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-cat=application_vnd.ms-pki.seccat
+type=application/vnd.ms-pki.seccat \
+desc=Security Catalog \
+exts=""
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_vnd.ms-pki.seccat=application_vnd.ms-pki.seccat
+type=application/x-crossover-der \
+desc=Security Certificate \
+exts="der"
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-der=application_pkix-cert;application_pkix-cert::add
+type=application/x-crossover-cer \
+desc=Security Certificate \
+exts="cer"
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-cer=application_pkix-cert;application_pkix-cert::add
+type=application/x-crossover-crt \
+desc=Security Certificate \
+exts="crt"
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-crt=application_pkix-cert;application_pkix-cert::add
+type=application/pkix-cert \
+desc=Security Certificate \
+exts=""
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_pkix-cert=application_pkix-cert;application_pkix-cert::add
+type=application/x-crossover-chm \
+desc=Compiled HTML Help file \
+exts="chm"
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-chm=application_x-crossover-chm
+type=application/x-crossover-crl \
+desc=Certificate Revocation List \
+exts="crl"
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-crl=application_pkix-crl::add;application_pkix-crl
+type=application/pkix-crl \
+desc=Certificate Revocation List \
+exts=""
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_pkix-crl=application_pkix-crl::add;application_pkix-crl
+type=application/x-crossover-grp \
+desc=Microsoft Program Group \
+exts="grp"
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-grp=application_x-crossover-grp
+type=application/x-crossover-hta \
+desc=HTML Application \
+exts="hta"
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-hta=application_hta
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-hta=application_hta
+type=application/hta \
+desc=HTML Application \
+exts=""
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_hta=application_hta
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_hta=application_hta
+type=application/x-crossover-its \
+desc=Internet Document Set \
+exts="its"
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-its=application_x-crossover-its
+type=application/x-crossover-pfx \
+desc=Personal Information Exchange \
+exts="pfx"
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-pfx=application_x-pkcs12::add
+type=application/x-crossover-p12 \
+desc=Personal Information Exchange \
+exts="p12"
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-p12=application_x-pkcs12::add
+type=application/x-pkcs12 \
+desc=Personal Information Exchange \
+exts=""
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-pkcs12=application_x-pkcs12::add
+type=application/x-crossover-spc \
+desc=PKCS #7 Certificates \
+exts="spc"
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-spc=application_x-pkcs7-certificates::add
+type=application/x-crossover-p7b \
+desc=Digital ID File \
+exts="p7b"
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-p7b=application_pkcs7-mime
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-p7b=application_x-pkcs7-certificates::add
+type=application/x-pkcs7-certificates \
+desc=PKCS #7 Certificates \
+exts=""
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-pkcs7-certificates=application_x-pkcs7-certificates::add
+type=application/x-crossover-p7r \
+desc=Certificate Request Response \
+exts="p7r"
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-p7r=application_x-pkcs7-certreqresp;application_x-pkcs7-certreqresp::add
+type=application/x-pkcs7-certreqresp \
+desc=Certificate Request Response \
+exts=""
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-pkcs7-certreqresp=application_x-pkcs7-certreqresp;application_x-pkcs7-certreqresp::add
+type=application/x-crossover-prf \
+desc=shell \
+exts="prf"
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-prf=application_pics-rules
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-prf=application_pics-rules
+type=application/pics-rules \
+desc=shell \
+exts=""
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_pics-rules=application_pics-rules
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_pics-rules=application_pics-rules
+type=application/x-crossover-scf \
+desc=Windows Explorer Command \
+exts="scf"
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-scf=application_x-crossover-scf
+type=application/x-crossover-sct \
+desc=Windows Script Component \
+exts="sct"
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-sct=text_scriptlet::unregister;text_scriptlet;text_scriptlet::register;text_scriptlet::generate+typelib
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-sct=text_scriptlet::unregister;text_scriptlet;text_scriptlet::register;text_scriptlet::generate+typelib
+type=application/x-crossover-wsc \
+desc=Windows Script Component \
+exts="wsc"
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-wsc=text_scriptlet::unregister;text_scriptlet;text_scriptlet::register;text_scriptlet::generate+typelib
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-wsc=text_scriptlet::unregister;text_scriptlet;text_scriptlet::register;text_scriptlet::generate+typelib
+type=text/scriptlet \
+desc=Windows Script Component \
+exts=""
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:text_scriptlet=text_scriptlet::unregister;text_scriptlet;text_scriptlet::register;text_scriptlet::generate+typelib
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:text_scriptlet=text_scriptlet::unregister;text_scriptlet;text_scriptlet::register;text_scriptlet::generate+typelib
+type=application/x-crossover-stl \
+desc=Certificate Trust List \
+exts="stl"
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-stl=application_vnd.ms-pki.stl;application_vnd.ms-pki.stl::add
+type=application/vnd.ms-pki.stl \
+desc=Certificate Trust List \
+exts=""
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_vnd.ms-pki.stl=application_vnd.ms-pki.stl;application_vnd.ms-pki.stl::add
+type=application/x-crossover-xml \
+desc=XML Document \
+exts="xml"
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-xml=text_xml::open^0d;text_xml
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-xml=text_xml::open^0d;text_xml
+type=application/x-crossover-xsl \
+desc=XSL Stylesheet \
+exts="xsl"
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-xsl=text_xml
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-xsl=text_xml
+type=text/xml \
+desc=XML Document \
+exts=""
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:text_xml=text_xml::open^0d;text_xml
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:text_xml=text_xml::open^0d;text_xml
+type=application/x-crossover-qdb \
+desc=Quicken QDB data file \
+exts="qdb"
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-qdb=application_x-crossover-qdb
+type=application/x-crossover-qdf \
+desc=Quicken QDF data file \
+exts="qdf"
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-qdf=application_x-crossover-qdf
+type=application/x-crossover-qdt \
+desc=Quicken QDT data file \
+exts="qdt"
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-qdt=application_x-crossover-qdt
+type=application/x-crossover-qfx \
+desc=Quicken OFX data \
+exts="qfx"
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-qfx=application_vnd.intu.qfx
+type=application/vnd.intu.qfx \
+desc=Quicken OFX data \
+exts=""
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_vnd.intu.qfx=application_vnd.intu.qfx
+type=application/x-crossover-qwmod \
+desc=Quicken Module data file \
+exts="qwmod"
+# X-Created-By-mcap-cxoffice-db5aaa47-5aba-409d-b67f-21df65f6a20a:application_x-crossover-qwmod=application_x-crossover-qwmod
+type=application/x-crossover-jfif \
+desc=JPEG Image \
+exts="jfif"
+# X-Created-By-mcap-cxoffice-388e1436-7190-40b4-8b15-1587ceec6135:application_x-crossover-jfif=image_jpeg
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-jfif=image_jpeg
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-jfif=image_pjpeg
+type=application/x-crossover-cdf \
+desc=Channel File \
+exts="cdf"
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-cdf=application_x-cdf::explore;application_x-cdf::open;application_x-cdf::edit;application_x-cdf;application_x-cdf::openchannel
+type=application/x-cdf \
+desc=Channel File \
+exts=""
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-cdf=application_x-cdf::explore;application_x-cdf::open;application_x-cdf::edit;application_x-cdf;application_x-cdf::openchannel
+type=application/x-crossover-js \
+desc=JScript Script File \
+exts="js"
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-js=application_x-crossover-js;application_x-crossover-js::print;application_x-crossover-js::open2;application_x-crossover-js::edit
+type=application/x-crossover-jse \
+desc=JScript Script File \
+exts="jse"
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-jse=application_x-crossover-jse::print;application_x-crossover-jse::open2;application_x-crossover-jse::edit;application_x-crossover-jse
+type=application/x-crossover-p7c \
+desc=Digital ID File \
+exts="p7c"
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-p7c=application_pkcs7-mime
+type=application/pkcs7-mime \
+desc=Digital ID File \
+exts=""
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_pkcs7-mime=application_pkcs7-mime
+type=application/x-crossover-rat \
+desc=鳘翠p翙潩⽮慲⵴楦敬 \
+exts="rat"
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-rat=application_rat-file
+type=application/rat-file \
+desc=鳘翠p翙潩⽮慲⵴楦敬 \
+exts=""
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_rat-file=application_rat-file
+type=application/x-crossover-vbe \
+desc=VBScript Script File \
+exts="vbe"
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-vbe=application_x-crossover-vbe::edit;application_x-crossover-vbe::print;application_x-crossover-vbe;application_x-crossover-vbe::open2
+type=application/x-crossover-vbs \
+desc=VBScript Script File \
+exts="vbs"
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-vbs=application_x-crossover-vbs::edit;application_x-crossover-vbs::print;application_x-crossover-vbs;application_x-crossover-vbs::open2
+type=application/x-crossover-vcf \
+desc=vCard File \
+exts="vcf"
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-vcf=text_x-vcard
+type=text/directory \
+desc=vCard File \
+exts=""
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:text_directory=text_x-vcard
+type=text/x-vcard \
+desc=vCard File \
+exts=""
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:text_x-vcard=text_x-vcard
+type=application/x-crossover-wab \
+desc=Address Book File \
+exts="wab"
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-wab=application_x-crossover-wab
+type=application/x-crossover-wsf \
+desc=Windows Script File \
+exts="wsf"
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-wsf=application_x-crossover-wsf::edit;application_x-crossover-wsf::open2;application_x-crossover-wsf;application_x-crossover-wsf::print
+type=application/x-crossover-wsh \
+desc=Windows Script Host Settings File \
+exts="wsh"
+# X-Created-By-mcap-cxoffice-524e7c78-c471-4e0f-a522-7eda38632fd1:application_x-crossover-wsh=application_x-crossover-wsh::open2;application_x-crossover-wsh
+type=application/x-crossover-jcd \
+desc=FlashGet Download Database \
+exts="jcd"
+# X-Created-By-mcap-cxoffice-88cb4071-0245-454c-9e3e-f776b268ef22:application_x-crossover-jcd=application_x-crossover-jcd
+application/x-crossover-exe 
+# X-Created-By-mcap-cxoffice-0:application_x-crossover-exe=application_x-crossover-exe::install;application_x-crossover-exe::run
+x-content/win32-software 
+# X-Created-By-mcap-cxoffice-0:x-content_win32-software=application_x-crossover-exe::install
+application/x-crossover-lnk lnk
+# X-Created-By-mcap-cxoffice-0:application_x-crossover-lnk=application_x-crossover-lnk::run
+application/x-ms-shortcut 
+# X-Created-By-mcap-cxoffice-0:application_x-ms-shortcut=application_x-crossover-lnk::run
+application/x-win-lnk 
+# X-Created-By-mcap-cxoffice-0:application_x-win-lnk=application_x-crossover-lnk::run
+application/x-crossover-cxarchive cxarchive
+# X-Created-By-mcap-cxoffice-0:application_x-crossover-cxarchive=application_x-crossover-cxarchive::restore
+application/x-crossover-c4p 
+# X-Created-By-mcap-cxoffice-1:application_x-crossover-c4p=application_x-crossover-c4p::install
+application/x-crossover-tie tie
+# X-Created-By-mcap-cxoffice-1:application_x-crossover-tie=application_x-crossover-tie::install

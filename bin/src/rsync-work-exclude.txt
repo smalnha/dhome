@@ -1,0 +1,7 @@
+
+Desktop/encrypted
+Desktop/scrapbook
+
+# under the dev/*/ directory
+target
+

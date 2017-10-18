@@ -1,0 +1,105 @@
+-e # This is a simple example mailcap file.
+# Lines starting with '#' are comments.
+
+image/xcf; gimp %s
+image/svg; gimp %s
+image/svgz; gimp %s
+
+video/vob; xine %s
+
+text/md5; md5sum -c %s
+
+text/html; browser.sh %s
+# for mutt's auto_view
+# remember to set the default MIME type in elinks to text / html
+#text/html; elinks -force-html -dump %s; nametemplate=%s.html; copiousoutput
+
+text/xml.uml; umlet.sh %s
+
+application/gdesklet; gdesklets %s
+
+application/jar; file-roller %s
+application/war; file-roller %s
+#application/zip; xarchive %s
+#application/x-compressed-tar; xarchive %s
+#application/x-gzip; xarchive %s
+application/zip; less %s
+application/x-compressed-tar; less %s
+application/x-gzip; less %s
+
+
+application/x-latex; kile %s
+
+#application/pdf; acroread -openInNewWindow %s
+application/postscript; gv %s
+application/pdf; evince %s
+application/postscript; evince %s
+#application/postscript; kghostview %s
+application/x-dvi; kdvi %s
+
+application/dia;  dia %s
+
+application/gpg; crypt.sh %s
+
+application/gnumeric; gnumeric %s
+
+application/rtf; libreoffice %s
+application/document; libreoffice %s
+
+image/*; shotwell %s
+video/*; xine %s
+#video/flash; mplayer %s
+text/*; xterm.sh -e vim %s
+audio/*; mplayer %s
+# Microsoft Media Services
+audio/mms; smplayer %s
+
+image/vnd.rn-realflash; realplay "%u"
+application/x-shockwave-flash2-preview; realplay "%u"
+
+application/msproject; mpp.sh %s
+
+application/opendocumentdocument; libreoffice %s
+application/opendocumentspreadsheet; libreoffice %s
+application/opendocumentpresentation; libreoffice %s
+
+application/spreadsheet; excel %s
+application/excel; excel %s
+application/mspowerpoint; powerpnt %s
+application/powerpoint; powerpnt %s
+application/word; winword %s
+
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; libreoffice %s
+application/vnd.openxmlformats-officedocument.spreadsheetml.template; libreoffice %s
+application/vnd.openxmlformats-officedocument.presentationml.presentation; libreoffice %s
+application/vnd.openxmlformats-officedocument.presentationml.slideshow; libreoffice %s
+application/vnd.openxmlformats-officedocument.presentationml.template; libreoffice %s
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; libreoffice %s
+application/vnd.openxmlformats-officedocument.wordprocessingml.template; libreoffice %s
+
+
+application/vnd.stardivision.calc;	libreoffice %s
+application/vnd.stardivision.draw;	libreoffice %s
+application/vnd.stardivision.impress;	libreoffice %s
+application/vnd.stardivision.impress-packed;	libreoffice %s
+application/vnd.stardivision.math;	libreoffice %s
+application/vnd.stardivision.writer-global;	libreoffice %s
+application/vnd.stardivision.writer;	libreoffice %s
+application/vnd.sun.xml.calc;	libreoffice %s
+application/vnd.sun.xml.calc.template;	libreoffice %s
+application/vnd.sun.xml.draw;	libreoffice %s
+application/vnd.sun.xml.draw.template;	libreoffice %s
+application/vnd.sun.xml.impress;	libreoffice %s
+application/vnd.sun.xml.impress.template;	libreoffice %s
+application/vnd.sun.xml.math;	libreoffice %s
+application/vnd.sun.xml.writer.global;	libreoffice %s
+application/vnd.sun.xml.writer;	libreoffice %s
+application/vnd.sun.xml.writer.template;	libreoffice %s
+application/x-msexcel; libreoffice %s
+application/x-mspowerpoint;libreoffice %s
+application/x-starcalc;	libreoffice %s
+application/x-stardraw;	libreoffice %s
+application/x-starimpress;	libreoffice %s
+application/x-starmath;	libreoffice %s
+application/x-starwriter;	libreoffice %s
+

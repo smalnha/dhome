@@ -1,0 +1,49 @@
+
+#  Download and install Eclipse for Java Developers (Kepler version) from their website.
+#     replaced the URL prefix of all the Available Software Sites (which was "www.eclipse.org") with "mirror/eclipse"
+#     added Kepler Release site, pointing to ciads1:/ciads/archive/software/eclipseupdates/eclipse/releases/kepler
+#  Install Eclipse plug-in called Plug-in Development Environment(PDE)
+#  
+#  Import osgiExample folder
+#  Do the COMMAND-LINE step above through 'mvn clean install'.
+#  Tell Eclipse to ignore "copy-dependency" errors in pom.xml
+#  
+#  
+# install Tigris' Subclipse
+#  Installed Subclipse: http://subclipse.tigris.org/servlets/ProjectProcess?pageID=p4wYuA  by adding a site to /ciads/archive/software/eclipseupdates/subclipse.1.6 or 1.8
+#  Also must install CollabNet Merge Client, Subversion Client Adapter
+#  modify eclipse.ini in eclipse install directory: ensure "-Djava.library.path=/usr/lib/jni/" or "/usr/lib64" is present
+#  For CentOS 7, Steve downloaded the rpm http://rpm.pbone.net/index.php3/stat/4/idpl/26647111/dir/centos_7/com/subversion-javahl-1.7.14-6.el7.x86_64.rpm.html.  Then just did 'yum localinstall blah.rpm'.
+
+# For new eclipse installs,
+# 1. Right click on new project and Configure>"Convert to Maven Project" to enable Maven
+# 2. File>Import>Preferences
+
+# install Google's GWT
+
+# install Groovy 
+# create Site to /ciads/archive/software/eclipseupdates/groovy/e4.2
+
+
+# To mirror eclipse plugin: use "Mirroring Artifacts" section of http://wiki.eclipse.org/Equinox_p2_Repository_Mirroring
+
+
+# fixes button presses with GTK
+# see https://bugs.launchpad.net/ubuntu/+source/eclipse/+bug/443004
+export GDK_NATIVE_WINDOWS=1
+
+#http://stackoverflow.com/questions/3124629/how-can-i-configure-the-font-size-for-the-tree-item-in-the-package-explorer-in-e
+#export GTK2_RC_FILES=~/.gtkrc.eclipse 
+
+#$HOME/dev/eclipse/eclipse -Djava.library.path=/usr/lib/jni
+#$HOME/dev/eclipse/eclipse -Djava.library.path=/usr/lib64
+
+for E in eclipse dev/eclipse dev/eclipse/java-oxygen/eclipse; do
+	if [ -f $HOME/$E/eclipse ]; then
+		ECLIPSE_HOME=$HOME/$E
+		break
+	fi
+done
+
+$ECLIPSE_HOME/eclipse
+

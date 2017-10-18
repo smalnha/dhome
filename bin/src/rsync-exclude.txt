@@ -1,0 +1,47 @@
+#
+*~
+.*~
+*.tstamp
+*.log
+*.bak
+.*.swp
+.*-errors
+.*authority
+.DCOPserver_*
+.lyx/lyxpipe.*
+.lyxpipe.*
+.\#*
+.bash_history
+.cpan/Bundle
+.cpan/Metadata
+.cpan/build
+.cpan/sources
+.gnupg/random_seed
+.gnupg/tmp.pwdagent-*
+.lpoptions
+.nfs*
+.pwd-*
+.spamassassin/bayes_seen
+.spamassassin/bayes_toks
+.ssh/sshvars-*
+.ssh/known_hosts
+.vnc/*.pid
+
+# office temp files
+~*
+
+.fehbg
+#Cache
+#Cache.Trash
+#cache
+.enlightenment
+
+# backup
+NOBACKUP
+.kde
+# .kde/cache-*
+# .kde/socket-*
+# .kde/tmp-*
+.evolution
+.emacs.d
+

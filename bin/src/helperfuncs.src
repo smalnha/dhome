@@ -1,0 +1,141 @@
+#!/bin/bash
+
+# getopts:
+# If an argument is not given for a flag that needs one, "$flag" gets set to ":" and OPTARG has the misused flag. If an unknown argument is given, a "?" is put in "$flag", and OPTARG again has the unrecognized flag.
+
+#match () { 
+#	# case $1 in $2) return 0; ;; *) return 1; ;; esac
+#	[[ "$1" == $2 ]]
+#}
+
+# ask "Sure?" && doit
+# OR
+#	ask "Keep local? (default: yes) " 0
+#	if [ $? -eq 0 ] ; then
+#		mv -fv $1.local $1
+#	else
+#		mv -fv $1.local $HOME/NOBACKUP/trash/cvs
+#	fi
+# use this for a 'Y' or 'N' response
+ask(){
+	local defaultAns
+	case "$2" in
+		0 | Y | y | Yes | yes) 
+			echo -n "$1" '[Y/n] '
+			defaultAns=0
+		;;
+		* ) echo -n "$1" '[y/N] '
+			defaultAns=1
+		;;
+	esac
+	read ans
+    case "$ans" in
+        y*|Y*) echo "You selected YES."; return 0 ;;
+		n*|N*) echo "You selected NO."; return 1 ;;
+        *) return ${defaultAns:-1} ;;
+    esac
+}
+
+# use this if user must select a choice
+choose(){
+	DEFAULT_SELECTION="$1"
+	echo "-) $DEFAULT_SELECTION (<Ctrl-D> default)"
+    CHOICE="$DEFAULT_SELECTION"
+	select CHOICE in "$@" "exit"; do
+		[ "$CHOICE" == "exit" ] && return 1;
+		break;
+	done
+	[ -z "$CHOICE"  -o -z "${CHOICE// }" ] && CHOICE="$DEFAULT_SELECTION" # if <Ctrl-D>, TASK=null
+	# echo "You selected '$CHOICE'"
+	return 0
+}
+
+# isProcessRunning(){
+# 	if ps -u $USER -o command | grep -v "^grep" | grep -q "$1" ; then
+# 		#yes
+# 		return 0
+# 	else
+# 		#no
+# 		return -1
+# 	fi
+# }
+
+#replaceWithinString(){
+#	#echo "replaceWithinString: $1, $2, $3" >&2
+#	#echo ${1//$2/$3} # causes error in BSD even though not used
+#	echo $1 | awk "{ gsub(/$2/, \"$3\"); print }"
+#}
+
+removeTrailingSlash(){
+	case "$1" in
+		*/) # remove trailing '/'
+			local newLength
+			let newLength="${#1}"-1
+			echo "${1:0:$newLength}"
+		;;
+		*)
+			echo "$1"
+		;;
+	esac
+}
+
+myBasename(){ # this is faster than 'basename' and $2 can be '.*'
+	local myBASENAME=`removeTrailingSlash "$1"`
+	myBASENAME="${myBASENAME##*/}"
+	[ "$2" ] && myBASENAME="${myBASENAME%$2}"
+	echo "$myBASENAME"
+	return 0
+
+	# CAUTION: "${1##*/}" does not work if $1 ends with a '/'
+}
+
+#absolutePath(){
+#	local FILEPATH=`replaceWithinString "$1" "~" "$HOME"`
+#	local D=`dirname "$FILEPATH"`
+#	echo "`cd "$D" 2>/dev/null && pwd || echo "$D"`/`myBasename "$FILEPATH"`"
+#}
+
+#myDirname(){ # dirname
+#	echo ${foo%/*}
+#}
+
+#removeLastExt(){
+#	myBasename "$@" '.*'
+#	# alternative to ' echo $1 | sed 's/\(.*\)\.\([^\.]*\)/\1/g' '
+#}
+
+#getBasename() # removes all extensions
+#removeAllExtensions(){ 
+#	if [ $# -eq 0 ]; then
+#		echo "getBasename filename"
+#	else
+#		echo "${1%%.*}"
+#	fi
+#	#close alternative to ' echo $1 | grep -o "[^\.]*" '
+#}
+
+removeBasename(){
+	if [ $# -eq 0 ]; then
+		echo "removeBasename filename"
+	else
+		echo "${1#*.}"
+	fi
+	#close alternative to ' echo $1 | grep -o "\..*" '
+}
+
+getLastExt(){
+	if [ $# -eq 0 ]; then
+		echo "getLastExt filename"
+	else
+		echo "${1##*.}"
+	fi
+	 alternative to ' echo $1 | sed 's/\(.*\)\.\([^\.]*\)/\2/g' '
+	# or grep -o "\.[^.]*$" | tr -d '.' | tr [A-Z] [a-z]
+}
+
+dateStr(){
+	date +%Y-%m-%d-%T
+}
+
+
+

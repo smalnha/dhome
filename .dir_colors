@@ -1,0 +1,135 @@
+# Configuration file for the color ls utility
+# This file goes in the /etc directory, and must be world readable.
+# You can copy this file to .dir_colors in your $HOME directory to override
+# the system defaults.
+
+# COLOR needs one of these arguments: 'tty' colorizes output to ttys, but not
+# pipes. 'all' adds color characters to all output. 'none' shuts colorization
+# off.
+COLOR tty
+
+# Extra command line options for ls go here.
+# Basically these ones are:
+#  -F = show '/' for dirs, '*' for executables, etc.
+#  -T 0 = don't trust tab spacing when formatting ls output.
+#  -b = better support for special characters
+OPTIONS -F -b -T 0
+
+# Below, there should be one TERM entry for each termtype that is colorizable
+TERM linux
+TERM console
+TERM con132x25
+TERM con132x30
+TERM con132x43
+TERM con132x60
+TERM con80x25
+TERM con80x28
+TERM con80x30
+TERM con80x43
+TERM con80x50
+TERM con80x60
+TERM xterm
+TERM vt100
+TERM screen
+TERM rxvt
+TERM aterm
+
+# EIGHTBIT, followed by '1' for on, '0' for off. (8-bit output)
+EIGHTBIT 0
+
+# Below are the color init strings for the basic file types. A color init
+# string consists of one or more of the following numeric codes:
+# Attribute codes: 
+# 00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
+# Text color codes:
+# 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
+# Background color codes:
+# 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
+
+NORMAL 00	# global default, although everything should be something.
+FILE 00 	# normal file
+DIR 04;36	# directory
+
+LINK 40;33 	# symbolic link
+ORPHAN 41;33 # symlink to nonexistent file
+MISSING 41;33;04  # missing file
+
+FIFO 43;32	# pipe
+SOCK 43;34	# socket
+BLK  44;33;01	# block device driver
+CHR  44;33;01 	# character device driver
+
+# This is for files with execute permission:
+EXEC 32 
+
+# List any file extensions like '.gz' or '.tar' that you would like ls
+# to colorize below. Put the extension, a space, and the color init string.
+# (and any comments you want to add after a '#')
+# .cmd 0;32 # executables (bright green)
+# .exe 0;32
+# .com 0;32
+# .btm 01;32
+# .bat 0;32
+
+.tar 01;36 # archives or compressed (bright red)
+.tgz 01;36
+.gz  01;36
+.arj 01;36
+.taz 01;36
+.lzh 01;36
+.zip 01;36
+.bz2 01;36
+.rpm 01;36
+.deb 01;36
+.z   01;36
+.Z   01;36
+
+.jpg 35 # image and video formats
+.JPG 35
+.png 35
+.PNG 35
+.gif 35
+.GIF 35
+.bmp 35
+.BMP 35
+.ppm 35
+.PPM 35
+.tga 35
+.TGA 35
+.xbm 35
+.XBM 35
+.xpm 35
+.XPM 35
+.tif 35
+.TIF 35
+.mpg 35
+.MPG 35
+.avi 35
+.AVI 35
+.mov 35
+.MOV 35
+.wmv 35
+.WMV 35
+
+# source files
+.java 01;33
+.c    01;33
+.cc   01;33
+.cpp  01;33
+.h    01;33
+.cpp  01;33
+.src  01;33
+
+# should use open.sh
+.asc  01;32
+
+
+# office documents
+.doc 01;31
+.DOC 01;31
+.xls 01;31
+.XLS 01;31
+.ppt 01;31
+.PPT 01;31
+
+

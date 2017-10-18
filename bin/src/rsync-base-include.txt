@@ -1,0 +1,39 @@
+#
+
+#Dropbox  .a2ps/
+#Dropbox  .antrc
+#Dropbox  .aumixrc
+#Dropbox  .cvsrc
+#Dropbox  .inputrc
+#Dropbox  .dir_colors
+#Dropbox  .dir_colors.src
+#Dropbox  .dvd-slideshowrc
+#Dropbox  .dvipsrc
+#Dropbox  .elinks/elinks.conf
+#Dropbox  .inputrc
+#Dropbox  .ivman
+#Dropbox  .lessfilter
+#Dropbox  .login
+#Dropbox  .mailcap
+#Dropbox  .mh_profile
+#Dropbox  .mime.types
+#Dropbox  .perl_dirs
+#Dropbox  .txt2html.dict
+#Dropbox  .vimrc
+#Dropbox  .wgetrc
+#Dropbox  .shinit
+#Dropbox  .profile
+#Dropbox  .alias
+#Dropbox  .bash_completion
+#Dropbox  .bash_logout
+#Dropbox  .bash_noninter
+#Dropbox  .bashrc
+#Dropbox  .bash_profile
+#   .vim/
+
+# ---
+.ssh/config
+.ssh/authorized_keys2
+.my_rc
+.my_tools
+

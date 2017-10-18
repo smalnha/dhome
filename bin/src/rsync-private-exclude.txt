@@ -1,0 +1,15 @@
+#
+
+.gnupg/secring.gpg
+# gpg-agent
+.gnupg/sshcontrol
+# encrypted ssh id copied from private fs
+.gnupg/local_id_*
+.gnupg/private-keys-*
+.gnupg/gpg-agent-info-*
+.gnupg/pwdagent.*
+
+.mutt/muttrc
+
+private/encrypted
+

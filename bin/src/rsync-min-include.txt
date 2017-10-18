@@ -1,0 +1,11 @@
+.alias
+.bash_completion
+.bash_logout
+.bash_profile
+.bashrc
+.inputrc
+.dir_colors
+.dir_colors.src
+.vim/
+.vimrc
+
