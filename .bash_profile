@@ -179,6 +179,8 @@ if [ "$TIMEME" ] ; then
 fi
 
 
+[ -e ~/.my_gpg ] && source ~/.my_gpg
+
 # confuses scp
 # [ "$PS1" ] && [ -d $HOME/.calendar ] && sh $MY_BINSRC/calendar.src checkToday -f
 
