@@ -30,9 +30,8 @@ application/x-gzip; less %s
 
 application/x-latex; kile %s
 
-#application/pdf; acroread -openInNewWindow %s
 application/postscript; gv %s
-application/pdf; evince %s
+application/pdf; xreader %s
 application/postscript; evince %s
 #application/postscript; kghostview %s
 application/x-dvi; kdvi %s
@@ -46,7 +45,7 @@ application/gnumeric; gnumeric %s
 application/rtf; libreoffice %s
 application/document; libreoffice %s
 
-image/*; shotwell %s
+image/*; xviewer %s
 video/*; xine %s
 #video/flash; mplayer %s
 text/*; xterm.sh -e vim %s
@@ -62,6 +61,7 @@ application/msproject; mpp.sh %s
 application/opendocumentdocument; libreoffice %s
 application/opendocumentspreadsheet; libreoffice %s
 application/opendocumentpresentation; libreoffice %s
+application/opendocumentdrawing; libreoffice %s
 
 application/spreadsheet; excel %s
 application/excel; excel %s

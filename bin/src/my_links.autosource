@@ -66,9 +66,9 @@ initLinks(){
 	varDir/trash       trashDir
 	varDir/bak/rsync   rsyncBackup
 	varDir/bak/vim     vimBackup
-   tempDir/cache/dotCache dotCache
-   tempDir/cache/muttCache muttCache
 EOF
+#   tempDir/cache/dotCache dotCache
+#   tempDir/cache/muttCache muttCache
 }
 
 redirectDirs(){

@@ -7,13 +7,13 @@
 # Variables defined here are needed by non-interactive shells
 
 if [ "$MY_BIN" ]; then
-	: echo "  .bash_noninter not needed: $SHLVL : `date +%D-%T` : $0 $*" >> ${MY_LOG:=~/init.log}	
+	echo "+  .bash_noninter not needed: $SHLVL : `date +%D-%T` : $0 $*" >> ${MY_LOG:=~/init.log}	
 else
 	if [ "$MY_LOG" ]; then
 		#sourced by .bash_profile
-		: echo "   .bash_noninter: $SHLVL: $HOSTNAME : `date +%D-%T` : $0 $*" >> ${MY_LOG}
+		echo "+  .bash_noninter: $SHLVL: $HOSTNAME : `date +%D-%T` : $0 $*" >> ${MY_LOG}
 	else
-		: echo "{.bash_noninter: WHEN? : $SHLVL: $HOSTNAME : `date +%D-%T` : $0 $*" >> ${MY_LOG:=~/init.log}
+		echo "+  .bash_noninter: WHEN? : $SHLVL: $HOSTNAME : `date +%D-%T` : $0 $*" >> ${MY_LOG:=~/init.log}
 	fi
 
 	# BASH_ENV is called too many times unnecessarily; let's not set BASH_ENV

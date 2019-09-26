@@ -22,6 +22,10 @@
 [push]
 	default = current
 [gui]
-	editor = vim
+	editor = sublime
+	historybrowser = gitk
 [cola]
 	linebreak = false
+[user]
+	name = dlam
+	email = dnaelam@gmail.com

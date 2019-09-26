@@ -37,19 +37,19 @@ gpg-encrypt(){
 	# gpg password disables echo: stty -echo, so have to enable it
 	trap "stty echo" INT
 
-	TERM=xterm gpg -sea $GPGARGS --local-user $GPGID -r $GPGID --yes $1 
+	TERM=xterm gpg -sea $GPGARGS --local-user $GPGID -r $GPGID --yes "$1"
 	GPGRESULT=$?	
 	echo "gpg-encrypt exit value=$GPGRESULT"
 	if [ $GPGRESULT -eq 0 ] ; then
 		echo "======== Removing unencrypted temporary file."
-		rm -vf $1
+		rm -vf "$1"
 		echo "======== Successfully encrypted."
 	elif [ $GPGRESULT -eq 2 ]; then
 		echo "======== Cancelled by user or failed password 3 times. Discarding changes."
-		rm -v $1
+		rm -v "$1"
 	elif [ $GPGRESULT -eq 130 ]; then
 		echo "======== Discarding changes."
-		rm -v $1 
+		rm -v "$1" 
 	else
 		echo "errcode: $GPGRESULT"
 		echo "!!!!!! Problems encrypting $1.  Needs to be encrypted using:"
@@ -77,7 +77,7 @@ crypt(){
 				return 1
 			fi
 		else
-			cp -iv $1{,.bak}
+			cp -iv "$1"{,.bak}
 			local DECRYPTED="$1"
 		fi
 		read -p "Press key to encrypt."
@@ -291,7 +291,8 @@ case "$1" in
 		if mount | grep "encfs .*$1/encrypted" > /dev/null; then
 			umountEncFS $1 || interactiveMount $1
 		else
-			crypt $@
+			echo "Calling crypt: $1"
+			crypt "$@"
 		fi
 	;;
 esac

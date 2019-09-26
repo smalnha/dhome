@@ -39,8 +39,10 @@ $endif
 # Alt-Down
 "\e[1;3B": "cdSibling 1\n"
 # Alt-Left, Alt-Right
-"\e[1;3D": "pushd ..\n"
-"\e[1;3C": "popd 2> /dev/null || cdChild\n"
+#"\e[1;3D": "pushd ..\n"
+#"\e[1;3C": "popd 2> /dev/null || cdChild\n"
+"\e[1;3D": "cd ..\n"
+"\e[1;3C": "cdChild\n"
 
 # "\e[5~": "pushd ~\n"	# Page-up
 # "\e[6~": "popd\n"	# Page-Down

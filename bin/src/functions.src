@@ -100,12 +100,15 @@ function cdSibling(){
 	local DIR_COUNT=${1:-0}
 	if [ $DIR_COUNT -lt 0 ]; then
 		DIR_COUNT=${1//-}
-		SIBLING_DIR=`find .. -maxdepth 1 -type d | sort | grep -B $DIR_COUNT "${PWD##*/}$" | head -1`
+		#SIBLING_DIR=`find .. -maxdepth 1 -type d | sort | grep -B $DIR_COUNT "${PWD##*/}$" | head -1`
+		SIBLING_DIR=`command ls -d ../*/ | grep -B $DIR_COUNT "${PWD##*/}/$" | head -1`
 	else
-		SIBLING_DIR=`find .. -maxdepth 1 -type d | sort | grep -A $DIR_COUNT "${PWD##*/}$" | tail -1`
+		#SIBLING_DIR=`find .. -maxdepth 1 -type d | sort | grep -A $DIR_COUNT "${PWD##*/}$" | tail -1`
+		SIBLING_DIR=`command ls -d ../*/ | grep -A $DIR_COUNT "${PWD##*/}/$" | tail -1`
 	fi
-	[ ${DIR_COUNT} -lt 3 ] && DIR_COUNT=3
-	find .. -maxdepth 1 -type d | sort | grep -C $DIR_COUNT "$SIBLING_DIR" | highlight "${SIBLING_DIR//\//\\/}"
+	[ ${DIR_COUNT} -lt 3 ] && DIR_COUNT=4
+	#find .. -maxdepth 1 -type d | sort | grep -C $DIR_COUNT "$SIBLING_DIR" | highlight "${SIBLING_DIR//\//\\/}"
+	command ls -d ../*/ | grep -C $DIR_COUNT "$SIBLING_DIR" | highlight "${SIBLING_DIR//\//\\/}"
 	[ "$SIBLING_DIR" == ".." ] || cd "$SIBLING_DIR"
 }
 function cdChild(){

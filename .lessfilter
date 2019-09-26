@@ -4,6 +4,7 @@ case "$1" in
 	*.extension) extension-handler "$1";;
 	*.xls) xls2csv "$1" ;;
 	*.kmz) unzip -p "$1" ;;
+	*.pex) unzip -p "$1" ;;
 	*)
 		# We don't handle this format.
 		exit 1

@@ -3,7 +3,7 @@
 : ${HOSTNAME:=`hostname`}
 export HOSTNAME
 
-echo "{ .bash_profile: $HOSTNAME : `date +%D-%T` : `tty`: $SHLVL: $0 $*" >> ${MY_LOG:=~/init.log}
+echo "{  .bash_profile: $HOSTNAME : `date +%D-%T` : `tty`: $SHLVL: $0 $*" >> ${MY_LOG:=~/init.log}
 export MY_LOG
 
 if [ "$TIMEME" ] ; then
@@ -122,14 +122,13 @@ if [ -z "$MY_TRASH" ] || [ "$1" == "--force" ] ; then
 	fi
 	export H=$HOME
 
-# this occupies some time
 	export PAGER=less
 	export LESS='--ignore-case --line-numbers --hilite-unread --window=-4 --LONG-PROMPT --no-init --quit-if-one-screen --RAW-CONTROL-CHARS -P%t?f%f :stdin .?pb%pb\%:?lbLine %lb:?bbByte %bb:-...'
 	# use less to view binary files, e.g. tar, jar, zip, doc (with catdoc)
 	 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 	#export LESSCHARSET='latin1'
 
-	[ -f "$HOME"/.bash_profile.$USER ] && . "$HOME"/.bash_profile.$USER >> $MY_LOG
+	[ -f "$HOME"/.bash_profile.$HOSTNAME ] && . "$HOME"/.bash_profile.$HOSTNAME >> $MY_LOG
 
 else 
 	# This now only happens rarely (i.e. at login)
@@ -149,7 +148,7 @@ fi
 
 # interactive stuff should be in .bashrc because shell level 0 may be non-interactive and .bash_profile is only called then
 if [ "$PS1" ]; then	# if interactive shell
-	echo "   Sourcing .bashrc from .bash_profile" >> ${MY_LOG}
+	echo "   .bash_profile: sourcing .bashrc" >> ${MY_LOG}
 	[ -f ~/.bashrc ] && . ~/.bashrc >> ${MY_LOG}
 else 
    echo "   not interactive: ignoring .bashrc" >> ${MY_LOG}

@@ -155,6 +155,7 @@ application/vnd.openxmlformats-officedocument.wordprocessingml.template    dotx
 application/opendocumentdocument odt
 application/opendocumentspreadsheet ods
 application/opendocumentpresentation odp
+application/opendocumentdrawing odg
 
 application/gnumeric gnumeric
 

@@ -30,7 +30,7 @@
 
 # fixes button presses with GTK
 # see https://bugs.launchpad.net/ubuntu/+source/eclipse/+bug/443004
-export GDK_NATIVE_WINDOWS=1
+#export GDK_NATIVE_WINDOWS=1
 
 #http://stackoverflow.com/questions/3124629/how-can-i-configure-the-font-size-for-the-tree-item-in-the-package-explorer-in-e
 #export GTK2_RC_FILES=~/.gtkrc.eclipse 

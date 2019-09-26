@@ -33,13 +33,13 @@ if [ -z "$MY_BINSRC" ] ; then # .bash_profile not sourced
 	if [ "$TERM" = "dumb" ]; then
 		 # used by SCP
 		# occurs when 'ssh host command', which does not source .bash_profile by default
-		: echo " [ .bashrc: `date` : Dumb term (cvs, scp, or 'ssh host command')" >> ${MY_LOG}
+		: echo "[  .bashrc: `date` : Dumb term (cvs, scp, or 'ssh host command')" >> ${MY_LOG}
 		source ~/.bash_noninter
 	elif [ "$PS1" ] ; then  # interactive shell
- 		: echo " [ .bashrc: MY_BINSRC not set: sourcing .bash_profile" >> ${MY_LOG}
+ 		echo "[  .bashrc: MY_BINSRC not set: sourcing .bash_profile" >> ${MY_LOG}
 		source ~/.bash_profile "- 'sourced by ~/.bashrc'"  # will call .bashrc
 	else # other non-interactive shell
-		echo " [ .bashrc: `date` : When does this occur?? : $0 $*" >> ${MY_LOG}
+		echo "[  .bashrc: `date` : When does this occur?? : $0 $*" >> ${MY_LOG}
 		source ~/.bash_noninter
 		#printenv >> ${MY_LOG}
 		# for recording source ip of last ssh connection; to get external address of dynamic IP from home
@@ -61,7 +61,7 @@ else
 		done
 	fi
 
-	# echo "   Normal .bashrc" >> ${MY_LOG}
+	echo "   .bashrc: setting up for interactive shell" >> ${MY_LOG}
 
 	#---------------
 	# Shell settings must be set with every new shell
@@ -183,7 +183,7 @@ else
 		PS1="$HOSTNAME: \$PWD $TTY $PS1 \$? > "
 	elif [ -z "$prompt_is_set" ]; then
 		case $TERM in
-			*term | rxvt | linux | cygwin )
+			xterm* | *term | rxvt | linux | cygwin )
 				if [ "${DISPLAY}" = ":0" ] || [ "${DISPLAY}" = ":0.0" ] || [ -z "$SSH_TTY" ]; then
 					export HILIT='\e[0;36m'  # local machine: prompt will be partly cyan
 				else
@@ -227,8 +227,9 @@ else
 
 	# bash completion delays showing prompt
 	if [ "$BASH_COMPLETION" ] ; then
-		: echo "  Already using BASH_COMPLETION=$BASH_COMPLETION"
+		echo "   Already using BASH_COMPLETION=$BASH_COMPLETION" >> $MY_LOG
 	elif [ "$BASH" ]; then
+		echo "   Setting up BASH_COMPLETION" >> $MY_LOG
 		# define a function for later use
 		bashcomplete(){
 			COMP_TAR_INTERNAL_PATHS="true" # effective only if set *before* sourcing bash_complete
@@ -263,7 +264,37 @@ else
 		[ -f $MY_BINSRC/autosource ] && . $MY_BINSRC/autosource #|| echo "Note: $MY_BINSRC/autosource not found"
 	fi
 
+	if [ -f ~/offline ]; then
+		echo "Offline mode"
+	else
+		: #use 'sdkman' alias instead: [ -f ~/.sdkman.src ] && source ~/.sdkman.src
+	fi
+
 fi
 
-[ -f ~/.sdkman.src ] && source ~/.sdkman.src
+export NVM_DIR="~/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+#export SDKMAN_DIR="~/.sdkman"
+#[[ -s "~/.sdkman/bin/sdkman-init.sh" ]] && source "~/.sdkman/bin/sdkman-init.sh"
+source ~/.sdkman.src
+
+#OLD: source ~/.anaconda.src
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('$HOME/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "~/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "~/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="$HOME/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 

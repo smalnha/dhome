@@ -24,7 +24,7 @@ alias cp='cp -vp'
 alias du='du -kh'
 #alias +='pushd .'
 #alias _='popd'
-alias j='jobs -l'
+#alias j='jobs -l'
 alias df='df -kTh'
 #alias d='ls -altr'
 alias l='ls -al'   # show hidden files
@@ -215,7 +215,6 @@ alias asnotes='SNOTES=~/.asnotes.asc GPGID=bl@gmail.com EDITOR=pico crypt.sh sor
 
 alias pt='pstree -n -u -G | highlight "$USER"'
 
-alias sublime='~/localHDD/sublime_text_3/sublime_text'
 alias goog-chrome='google-chrome --disable-web-security'
 
 alias svnIgnore='svn propset svn:ignore -F ~/dev/svnignore .'
@@ -231,4 +230,13 @@ function mSVersion(){
 	mvn versions:set -DnewVersion=$*
 }
 
+alias sdkman='source "$HOME/.sdkman.src"'
 
+function cv () {
+    cdargs "$1" && cd "`cat "$HOME/.cdargsresult"`" ;
+}
+
+alias pydocweb='python -m pydoc -p 4444'
+
+. /usr/share/autojump/autojump.sh
+ 

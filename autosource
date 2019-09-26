@@ -1,7 +1,5 @@
 #
 
-[ -d ~/.my_links ] || mkdir ~/.my_links
-[ -L ~/.my_links/autosource ] || ln -snf $MY_BINSRC/my_links.autosource ~/.my_links/autosource
 BACKUPDIR=$HOME/backup-homedir
 [ -d "$BACKUPDIR" ] || mkdir "$BACKUPDIR"
 
@@ -23,6 +21,7 @@ createLinks(){
 						[ -L ~/"$A" ] || ln -sn ${LINKARGS} "$PWD/$A" ~/"$A"
 					;;
 					bin)
+						[ -d ~/bin ] || mkdir ~/bin
 						if [ -d "$A" ]; then
 							pushd "$A" >> /dev/null || return 1
 							for B in *; do
@@ -85,6 +84,8 @@ recursive_createLinks(){
 }
 
 createLinks
+[ -d ~/.my_links ] || mkdir ~/.my_links
+[ -L ~/.my_links/autosource ] || ln -snf ${MY_BINSRC:-~/bin/src}/my_links.autosource ~/.my_links/autosource
 
 if [ -f ~/.includePersonal ]; then
 		for D in personal x11; do
