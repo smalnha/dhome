@@ -6,13 +6,16 @@
 ############# OS-specific ##################
 
 UNAME=`uname`
-case "$UNAME" in 
-  "Linux" )
+case "$UNAME" in
+  Linux)
 		alias rm='rm -vi'
    	# The 'ls' family (this assumes you use the GNU ls)
    	alias ls='echo $PWD >| $TMP/$USER-lastPWD; ls -h --color=auto'  # add colors for filetype recognition
     ;;
-  "SunOS" )
+  Darwin)
+		alias rm='rm -vi'
+    ;;
+  SunOS)
     ;;
 esac
 
@@ -30,7 +33,7 @@ alias df='df -kTh'
 alias l='ls -al'   # show hidden files
 alias lx='ls -lXB'              # sort by extension
 alias lk='ls -lSr'              # sort by size
-alias lc='ls -lcr'              # sort by change time  
+alias lc='ls -lcr'              # sort by change time
 alias lu='ls -lur'              # sort by access time
 alias lr='ls -lR'               # recursive ls
 alias lt='ls -ltr'              # sort by date
@@ -54,7 +57,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-cs(){ 
+cs(){
     cd $1
     ls
 }
@@ -174,19 +177,26 @@ c(){
 
 	grep -q "$PWD" "$HOME/.pwd-$HOSTNAME" || echo "$PWD" >>"$HOME/.pwd-$HOSTNAME"
 	AUTOSRCDIR="$PWD"
-	while [ ! -f "$AUTOSRCDIR"/autosource ] && [ "$AUTOSRCDIR" ] && [ "$AUTOSRCDIR" != "$HOME" ]; do
+	while [ ! -f "$AUTOSRCDIR"/autosource ] && [ ! -f "$AUTOSRCDIR"/.autosource ] && [ "$AUTOSRCDIR" ] && [ "$AUTOSRCDIR" != "$HOME" ]; do
 		AUTOSRCDIR="${AUTOSRCDIR%/*}"
 		echo "Searching in: $AUTOSRCDIR"
 	done
 
 	if [ -f "$AUTOSRCDIR/autosource" ]; then
-		if [ "$PWD" = "$AUTOSRCDIR" ] || read -p "About to source $AUTOSRCDIR/autosource:"; then
+		AUTOSRCFILE="$AUTOSRCDIR/autosource"
+	elif [ -f "$AUTOSRCDIR/.autosource" ]; then
+		AUTOSRCFILE="$AUTOSRCDIR/.autosource"
+	fi
+
+	if [ -f "$AUTOSRCFILE" ]; then
+		if [ "$PWD" = "$AUTOSRCDIR" ] || read -p "About to source $AUTOSRCFILE:"; then
 			echo "_____________________________________"
-			echo -e "Autosourcing $AUTOSRCDIR/autosource:\e[0;33m"
-			grep "alias" "$AUTOSRCDIR/autosource"
-			grep "()" "$AUTOSRCDIR/autosource"
-			echo -e "\e[0m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
-			. "$AUTOSRCDIR"/autosource # need ./ so it does search for autosource in $PATH
+			echo -e "Autosourcing $AUTOSRCFILE:"
+			grep "alias" "$AUTOSRCFILE"
+			grep "()" "$AUTOSRCFILE"
+			echo "_____________________________________"
+			. "$AUTOSRCFILE"
+			# need ./ so it does search for autosource in $PATH
 		fi
 	else
 		echo "autosource file not found"
@@ -220,8 +230,8 @@ alias goog-chrome='google-chrome --disable-web-security'
 alias svnIgnore='svn propset svn:ignore -F ~/dev/svnignore .'
 alias mUpParent='mvn versions:update-parent'
 alias mUpParentToSnapshot='mvn versions:update-parent -DallowSnapshots=true'
-alias mLVersions='mvn versions:use-latest-versions' 
-alias mLSnapshots='mvn versions:use-latest-snapshots' 
+alias mLVersions='mvn versions:use-latest-versions'
+alias mLSnapshots='mvn versions:use-latest-snapshots'
 alias mDUpdates='mvn versions:display-dependency-updates'
 alias mDUpdatesSnapshots='mvn versions:display-dependency-updates -DallowSnapshots=true'
 alias mDTree='mvn dependency:tree'
@@ -238,5 +248,20 @@ function cv () {
 
 alias pydocweb='python -m pydoc -p 4444'
 
-. /usr/share/autojump/autojump.sh
- 
+#. /usr/share/autojump/autojump.sh
+
+alias gg='git grep -n'
+
+alias cf='cd ~/dev/caseflow && c'
+
+eval "$(thefuck --alias)"
+
+#####
+# Custom DSVA Appeals config
+#####
+alias mfa="source issue_mfa Yoom.Lam"
+alias sockson="socks on Yoom.Lam"
+alias socksoff="socks off"
+# dsva=setup
+
+

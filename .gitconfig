@@ -1,6 +1,7 @@
+
 [user]
-	#name = me
-	#email = me@gmail.com
+	name = yoomlam
+	email = yoom@navapbc.com
 
 [alias]
 	s = status
@@ -17,8 +18,6 @@
 	ignored = ls-files --other --ignored --exclude-standard
    m = merge --no-ff
 
-
-
 [push]
 	default = current
 [gui]
@@ -26,6 +25,20 @@
 	historybrowser = gitk
 [cola]
 	linebreak = false
-[user]
-	name = dlam
-	email = dnaelam@gmail.com
+	spellcheck = false
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[core]
+	excludesfile = /Users/yoomlam/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/yoomlam/.stCommitMsg

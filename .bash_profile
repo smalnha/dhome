@@ -11,7 +11,7 @@ if [ "$TIMEME" ] ; then
 	START_SEC=`date +%s`
 fi
 
-# only need to do the following once per login 
+# only need to do the following once per login
 if [ -z "$MY_TRASH" ] || [ "$1" == "--force" ] ; then
 
 	# check .my_links
@@ -21,12 +21,19 @@ if [ -z "$MY_TRASH" ] || [ "$1" == "--force" ] ; then
 		popd
 	fi
 
+	# Need this here so that gnubin's readline is available
+	# > brew install coreutils
+	# Commands also provided by macOS have been installed with the prefix "g".
+	# If you need to use these commands with their normal names, you
+	# can add a "gnubin" directory to your PATH from your bashrc like:
+	[ -d "/usr/local/opt/coreutils/libexec/gnubin" ] && export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
 	export MY_NOBACKUP=$HOME/NOBACKUP
 	[ -d "$MY_NOBACKUP" ] || mkdir "$MY_NOBACKUP"
 
 	# used by many apps (e.g. gs, ps2pdf, gksudo)
 	# must use actual resolved directory since root will not have permissions to a mounted home directory or its subdirs
-	[ -e "$HOME/.my_links/tempDir" ] && export TEMP=`readlink -f "$HOME/.my_links/tempDir"`
+	[ -e "$HOME/.my_links/tempDir" ] && export  TEMP=`readlink -f "$HOME/.my_links/tempDir"`
 	[ "$TEMP" ] || export TEMP="$MY_NOBACKUP/tmp"
 	# used by mutt
 	export TMPDIR=$TEMP
@@ -97,7 +104,7 @@ if [ -z "$MY_TRASH" ] || [ "$1" == "--force" ] ; then
 	#export GREP_OPTIONS='--color'
 
 	# gs options
-	#export GS_OPTIONS=-dSAFER -dNOPAUSE -dBATCH -dCompatibilityLevel=1.2 -sOutputFile=gs.pdf 
+	#export GS_OPTIONS=-dSAFER -dNOPAUSE -dBATCH -dCompatibilityLevel=1.2 -sOutputFile=gs.pdf
 	#export GS_DEVICE=pdfwrite
 
 	#export MANPATH=:$HOME/usr/man
@@ -130,7 +137,7 @@ if [ -z "$MY_TRASH" ] || [ "$1" == "--force" ] ; then
 
 	[ -f "$HOME"/.bash_profile.$HOSTNAME ] && . "$HOME"/.bash_profile.$HOSTNAME >> $MY_LOG
 
-else 
+else
 	# This now only happens rarely (i.e. at login)
 	echo "   Skipping unnecessry parts of .bash_profile called from $0." >> ${MY_LOG}
 fi
@@ -150,7 +157,7 @@ fi
 if [ "$PS1" ]; then	# if interactive shell
 	echo "   .bash_profile: sourcing .bashrc" >> ${MY_LOG}
 	[ -f ~/.bashrc ] && . ~/.bashrc >> ${MY_LOG}
-else 
+else
    echo "   not interactive: ignoring .bashrc" >> ${MY_LOG}
 fi
 
@@ -162,7 +169,7 @@ if [ -z "$MY_TRASH" ] ; then
 #	addToMyPath -f -var CDPATH .
 #	addToMyPath -var CDPATH $HOME $HOME/Desktop
 #	addToMyPath $H/NOBACKUP/dev/omnetpp-4.2.2/bin
-	
+
 	[ -e "$HOME/.my_links" ] && export MY_TRASH=$HOME/.my_links/trashDir
 	[ -e "$MY_TRASH" ] || export MY_TRASH="$TMP"
 	# already done above [ -d "$HOME/.my_links/tempDir" ] || { pushd $HOME/.my_links; source autosource; popd; }  #mkdir -p "$MY_TRASH"
@@ -185,3 +192,8 @@ fi
 
 
 # ivim: fdm=indent
+
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+

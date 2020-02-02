@@ -29,7 +29,7 @@ esac
 : ${MY_LOG:=~/init.log}
 export MY_LOG
 if [ -z "$MY_BINSRC" ] ; then # .bash_profile not sourced
-	# if ! cvs then 
+	# if ! cvs then
 	if [ "$TERM" = "dumb" ]; then
 		 # used by SCP
 		# occurs when 'ssh host command', which does not source .bash_profile by default
@@ -67,15 +67,15 @@ else
 	# Shell settings must be set with every new shell
 	#---------------
 	#ulimit -S -c 0				# default: Don't want any coredumps
-	ulimit -n 4000
-	ulimit -u 10240
+	#ulimit -n 4000
+	#ulimit -u 10240
 	set -o notify
 	#set -o nounset 	# indicates an error when using an undefined variable
 	#set -o xtrace				# useful for debuging
 	#set -P #for symbolic links, goes to the actual directory; can also use 'cd -P' instead
 
 	# Report the status of terminated background jobs immediately
-	set -b  
+	set -b
 
 	if [ "$BASH" ]; then
 		# too restrictive for letting others see files: umask 0077 # umask -S to view it
@@ -132,9 +132,9 @@ else
 			#	How many characters of the $PWD should be kept so that $PWD fits in window
 			let pwdmaxlen=${COLUMNS}-24
 			#	Indicator that there has been directory truncation
-			#newPWD=`echo $PWD | sed -e "s/\/home\/$USER/~/"`
-			#newPWD=${PWD/#\/home\/$USER/~}
-			newPWD=${PWD/\/home\/$USER/\$H}
+			#newPWD=`echo $PWD | sed -e "s/\/Users\/$USER/~/"`
+			#newPWD=${PWD/#\/Users\/$USER/~}
+			newPWD=${PWD/\/Users\/$USER/\$H}
 			if [ ${#newPWD} -gt $pwdmaxlen ]; then
 				local pwdoffset=$(( ${#newPWD} - $pwdmaxlen ))
 				newPWD="...${newPWD:$pwdoffset}"
@@ -143,29 +143,34 @@ else
 			fi
 
 			# for xterm title change
-			local TITLE="${MY_SSHHOST}${PWD/\/home\/$USER/\$H}"
-			[ "$TITLE" ] || TITLE="~"
-			case "$TERM" in
-				linux)  # text-console
-            ;;
-            xterm)
-			       echo -en "\033]0;$TITLE\007"
-				;;
-				screen) # for screen utility
-					 echo -en "\033]0;$WINDOW:$TITLE\007"
-				;;
-				*) 
-					echo -ne "\033]0;$TITLE\007" # doesn't work for mrxvt
-					# for mrxvt:
-					# mrxvt always exports the variable "COLORTERM" unless ssh
-					if [ "$SSH_CLIENT" ]; then
-						[ "$TERM" == "rxvt" ] && echo -en "\e]61;$TITLE\a"
-					else
-						[ "$MRXVT_TABTITLE" ] && echo -en "\e]61;$TITLE\a"
-					fi
-					# alternativly select some text in the mrxvt terminal and press Shift_Delete.
-					# or select text in the mrxvt terminal and click the middle button of your mouse on the tab that you want to change the title
-				;;
+			case "$LC_TERMINAL" in 
+				#iTerm*) ;; # let iTerm set title
+				*)
+					local TITLE="${MY_SSHHOST}${PWD/\/Users\/$USER/\$H}"
+					[ "$TITLE" ] || TITLE="~"
+					case "$TERM" in
+						linux)  # text-console
+						;;
+						xterm)
+							 echo -en "\033]0;$TITLE\007"
+						;;
+						screen) # for screen/tmux utility
+							 echo -en "\033]0;$WINDOW:$TITLE\007"
+						;;
+						*)
+							echo -ne "\033]0;$TITLE\007" # doesn't work for mrxvt
+							# for mrxvt:
+							# mrxvt always exports the variable "COLORTERM" unless ssh
+							if [ "$SSH_CLIENT" ]; then
+								[ "$TERM" == "rxvt" ] && echo -en "\e]61;$TITLE\a"
+							else
+								[ "$MRXVT_TABTITLE" ] && echo -en "\e]61;$TITLE\a"
+							fi
+							# alternativly select some text in the mrxvt terminal and press Shift_Delete.
+							# or select text in the mrxvt terminal and click the middle button of your mouse on the tab that you want to change the title
+						;;
+					esac
+					;;
 			esac
 			LASTPWD=$PWD
 		}
@@ -201,7 +206,7 @@ else
 				# magn='\e[0;35m'
 				# cyan='\e[0;36m'
 				# norm='\e[0m'				    # No Color
-				
+
 				#export PS1="< \u@\[${HILIT}\]\h: \[\e[0;32m\]\${newPWD}\n  [${TTY}.${SHLVL}] \t {\j} \[\e[0;31m\]\${?}\[\e[0m\] > " ;;
 				if [ "$PROMPT_COMMAND" ]; then
 					export PS1="< \u@\[${HILIT}\]\h:\[ \e[0;32m\]\${newPWD}\n  [${SHLVL}] \t {\j} \[\e[0;31m\]\${?}\[\e[0m\] > "
@@ -210,6 +215,7 @@ else
 				fi
 				;;
 			screen )
+				unset PROMPT_COMMAND
 				export PS1="\n\u@\[${HILIT}\]\h:\[ \e[0;32m\]\${PWD}\n [${WINDOW}: ${TTY}.${SHLVL}] \t {\j} \[\e[0;31m\]\${?}\[\e[0m\] > " ;;
 			old_linux )
 				export PS1="${HILIT}[\h]$norm \W > " ;;
@@ -259,7 +265,7 @@ else
 		bashcomplete
 	fi
 
-	if [ "$MY_BINSRC" ] ; then 
+	if [ "$MY_BINSRC" ] ; then
 		# just add it to $MY_BINSRC/autosource instead
 		[ -f $MY_BINSRC/autosource ] && . $MY_BINSRC/autosource #|| echo "Note: $MY_BINSRC/autosource not found"
 	fi
@@ -276,25 +282,5 @@ export NVM_DIR="~/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-#export SDKMAN_DIR="~/.sdkman"
-#[[ -s "~/.sdkman/bin/sdkman-init.sh" ]] && source "~/.sdkman/bin/sdkman-init.sh"
-source ~/.sdkman.src
 
-#OLD: source ~/.anaconda.src
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('$HOME/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "~/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "~/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="$HOME/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
+#export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

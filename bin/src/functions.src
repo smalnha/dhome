@@ -88,8 +88,9 @@ Usage: fstr [-i] \"pattern\" [\"filename pattern\"] "
         echo "$usage"
         return;
     fi
-    find . ${3:-} -type f -name "${2:-*}" | grep -v "\.svn/" | xargs grep --color -sn ${case} "$1" 2>&-
-    #find . ${3:-} -type f -name ".${2:-*}" -print0 | xargs -0 grep --color -sn ${case} "$1" 2>&-
+    #find . ${3:-} -type f | grep -v "\.svn/" | xargs grep --color -sn ${case} "$1" {} 2>&-
+    #find . ${3:-} -type f -name "${2:-*}" | grep -v "\.svn/" | xarg -t grep --color -sn ${case} "$1" {} 2>&-
+    find . ${3:-} -type f -name "${2:-*}" -not -path "./.git/*" -not -path "./tmp/*" -print0 | xargs -0 grep --color -sn ${case} "$1" 2>&-
 }
 function fstrLocal(){
 	fstr "$1" "${2:-*}" "-maxdepth ${3:-1}"

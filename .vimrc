@@ -16,7 +16,7 @@ set clipboard=unnamed
 set go+=a
 set smarttab
 " Allow backspace to back over lines
-set backspace=2
+set backspace=indent,eol,start
 set exrc
 set shiftwidth=3    
 " Always expand tabs to spaces
@@ -276,19 +276,35 @@ map <C-P> <ESC>:bp <CR>
 map - <C-W>-
 map + <C-W>+ 
 
+:" map Mac OS X default Home and End 
+:map <C-A> <HOME>
+:map <C-E> <END>
+:inoremap <C-A> <C-O>0
+:inoremap <C-E> <C-O>$
+" PgUp PgDn
+:noremap <ESC>[[5 <C-u>
+:noremap <ESC>[[6 <C-d>
+:inoremap <ESC>[[5 <C-u>
+:inoremap <ESC>[[6 <C-d>
+" Word back and forward ^[b ^[f
+:noremap <ESC>b b
+:noremap <ESC>f w
+" Backspace
+:map <C-h> <BS>
+ 
 " minimum window height
-set winminheight=0
+"set winminheight=0
 "Ctrl-W, Up (move up a window) Ctrl-W, _ (maximize)
-nmap <C-j> <C-w>j<C-w>_
-nmap <C-k> <C-w>k<C-w>_
-set winminwidth=0
-nmap <C-h> <C-w>h<C-w>_
-nmap <C-l> <C-w>l<C-w>_
+"nmap <C-j> <C-w>j<C-w>_
+"nmap <C-k> <C-w>k<C-w>_
+"set winminwidth=0
+"nmap <C-h> <C-w>h<C-w>_
+"nmap <C-l> <C-w>l<C-w>_
 
 " moving between split panes
 nmap <C-k> :wincmd k<CR>
 " nmap <C-j> :wincmd j<CR>
-nmap <C-h> :wincmd h<CR>
+"nmap <C-h> :wincmd h<CR>
 nmap <C-l> :wincmd l<CR>
 nmap <M-n> :next<CR>
 nmap <M-p> :previous<CR>

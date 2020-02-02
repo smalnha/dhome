@@ -41,8 +41,8 @@ $endif
 # Alt-Left, Alt-Right
 #"\e[1;3D": "pushd ..\n"
 #"\e[1;3C": "popd 2> /dev/null || cdChild\n"
-"\e[1;3D": "cd ..\n"
-"\e[1;3C": "cdChild\n"
+"\e[1;OD": "cd ..\n"
+"\e[1;OC": "cdChild\n"
 
 # "\e[5~": "pushd ~\n"	# Page-up
 # "\e[6~": "popd\n"	# Page-Down
@@ -52,6 +52,8 @@ $endif
 "\eOF": end-of-line
 "\eOB":         history-search-forward  # Down-Arrow
 "\eOA":         history-search-backward # Up-Arrow 
+
+"\ex": 'cd '
 
 # (F1 .. F5) are "\e[11~" ... "\e[15~" in X windows
 # "\e[11~": "man "
@@ -64,8 +66,8 @@ $endif
  
 #F8: "\e[[19~":"set | grep LIPS\C-M"
 
-"\C-a": "cd -\n"
-"\C-b": "bashcomplete\n"
+#"\C-a": "cd -\n"
+#"\C-b": "bashcomplete\n"
 #"\C-j": "pushd .\n"
 #"\C-h": "popd\n"
 
@@ -85,13 +87,29 @@ TAB: complete
 
 # Tip: use M-. to insert previous arguments
 
+# mac Terminal
+# https://brettterpstra.com/2015/07/09/shell-tricks-inputrc-binding-fun/
+"\e[1;5C": forward-word    # Option-rightArrow
+"\e[1;5D": backward-word   # Option-leftArrow
+
+# iTerm2 mac
+# https://superuser.com/questions/357355/how-can-i-get-controlleft-arrow-to-go-back-one-word-in-iterm2
+"\M-\e[D": backward-word   # Option-leftArrow
+"\M-\e[C": forward-word    # Option-rightArrow
+"\e[1;5A": "pushd ..\n"   # Ctrl-upArrow
+"\e[1;5B": "popd\n"       # Ctrl-downArrow
+#"\M-\e[D": backward-kill-word
+"\C-\M-o": "pushd ..\n"
+"\C-\M-p": "popd\n"
+
 # prev-command, home, forward a word, space, Ctrl-K
-"\M-,": "\C-p\e[1~\M-f \C-k"
+"\M-,": "\C-p\e[OH\M-f \C-k"
+ #"\M-,":  "\eOH"
 # prev-command, backward a word, space, Ctrl-K
 "\M-/": "\C-p\M-\C-h"
 
 # Alt-backspace
-"\M-\C-?": backward-kill-word
+#"\M-\C-?": backward-kill-word
 
 # so that SBT stops complaining
 

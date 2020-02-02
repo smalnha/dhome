@@ -28,7 +28,6 @@ else
 
 	export MY_BIN=$HOME/bin
 	export MY_TOOLS=$HOME/.my_tools
-
 	#export PERL5LIB="$HOME/usr/lib/perl5:$HOME/usr/lib/perl5/site_perl:$HOME/usr/lib/perl/5.8.7/:$HOME/usr/lib/perl/5.8:$HOME/usr/share/perl/5.8.7"
 
 	export PATH CDPATH
@@ -100,7 +99,7 @@ else
 		#[ -d "/usr/local/X11R6.8/bin" ] && addToMyPath -f "/usr/local/X11R6.8/bin"  # xorg
 		#[ -d "/usr/X11R6/bin" ] && addToMyPath "/usr/X11R6/bin"  # ubuntu
 		#addToMyPath -f "/usr/local/sbin"
-		[ -d "$MY_BIN/$HOSTNAME" ] && addToMyPath -f "$MY_BIN/$HOSTNAME"
+		#[ -d "$MY_BIN/$HOSTNAME" ] && addToMyPath -f "$MY_BIN/$HOSTNAME"
 		[ -d "$MY_BIN/local" ] && addToMyPath -f "$MY_BIN/local"
 
 		# needed for Hadoop scripts
@@ -112,7 +111,7 @@ else
 				fi
 			done
 
-			addToMyPath -f "$JAVA_HOME/bin" 
+			[ -d "$JAVA_HOME" ] && addToMyPath -f "$JAVA_HOME/bin" 
 		fi
 
 		unset -f addToMyPath
@@ -121,6 +120,5 @@ else
 	[ -d "$MY_TOOLS/m2_home" ] && export M2_HOME="$MY_TOOLS/m2_home"
 
 fi
-
 
 
