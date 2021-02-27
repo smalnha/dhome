@@ -14,6 +14,7 @@ case "$UNAME" in
     ;;
   Darwin)
 		alias rm='rm -vi'
+   	#alias ls='ls -h --color=auto'  # add colors for filetype recognition
     ;;
   SunOS)
     ;;
@@ -192,10 +193,9 @@ c(){
 		if [ "$PWD" = "$AUTOSRCDIR" ] || read -p "About to source $AUTOSRCFILE:"; then
 			echo "_____________________________________"
 			echo -e "Autosourcing $AUTOSRCFILE:"
-			grep "alias" "$AUTOSRCFILE"
-			grep "()" "$AUTOSRCFILE"
+			grep -E -- "alias|\(\)" "$AUTOSRCFILE" | grep -v "^#"
 			echo "_____________________________________"
-			. "$AUTOSRCFILE"
+			source "$AUTOSRCFILE"
 			# need ./ so it does search for autosource in $PATH
 		fi
 	else
@@ -203,22 +203,22 @@ c(){
 	fi
 }
 
-vietprint(){
-	# uniprint provided by yudit
-	uniprint -wrap -font $HOME/.fonts/Cyberbit.ttf -size 14 -in $1 -out $1.ps
-}
-
-perlmake(){
-    perl Makefile.PL LIB="$PERL5LIB" PREFIX="$PERL5LIB" || return 1
-    echo "--------------------------------------"
-    make && make test && make install
-}
-
-convert2eps(){
-    local BASE=`basename "$1" .ps`
-    convert "$1" "$BASE.eps"
-    $HOME/bin/latex/bbox_add.pl "$BASE.eps"
-}
+# vietprint(){
+# 	# uniprint provided by yudit
+# 	uniprint -wrap -font $HOME/.fonts/Cyberbit.ttf -size 14 -in $1 -out $1.ps
+# }
+#
+# perlmake(){
+#     perl Makefile.PL LIB="$PERL5LIB" PREFIX="$PERL5LIB" || return 1
+#     echo "--------------------------------------"
+#     make && make test && make install
+# }
+#
+# convert2eps(){
+#     local BASE=`basename "$1" .ps`
+#     convert "$1" "$BASE.eps"
+#     $HOME/bin/latex/bbox_add.pl "$BASE.eps"
+# }
 
 alias snotes='crypt.sh sortedText'
 alias asnotes='SNOTES=~/.asnotes.asc GPGID=bl@gmail.com EDITOR=pico crypt.sh sortedText'
@@ -227,18 +227,18 @@ alias pt='pstree -n -u -G | highlight "$USER"'
 
 alias goog-chrome='google-chrome --disable-web-security'
 
-alias svnIgnore='svn propset svn:ignore -F ~/dev/svnignore .'
-alias mUpParent='mvn versions:update-parent'
-alias mUpParentToSnapshot='mvn versions:update-parent -DallowSnapshots=true'
-alias mLVersions='mvn versions:use-latest-versions'
-alias mLSnapshots='mvn versions:use-latest-snapshots'
-alias mDUpdates='mvn versions:display-dependency-updates'
-alias mDUpdatesSnapshots='mvn versions:display-dependency-updates -DallowSnapshots=true'
-alias mDTree='mvn dependency:tree'
+# alias svnIgnore='svn propset svn:ignore -F ~/dev/svnignore .'
+# alias mUpParent='mvn versions:update-parent'
+# alias mUpParentToSnapshot='mvn versions:update-parent -DallowSnapshots=true'
+# alias mLVersions='mvn versions:use-latest-versions'
+# alias mLSnapshots='mvn versions:use-latest-snapshots'
+# alias mDUpdates='mvn versions:display-dependency-updates'
+# alias mDUpdatesSnapshots='mvn versions:display-dependency-updates -DallowSnapshots=true'
+# alias mDTree='mvn dependency:tree'
 
-function mSVersion(){
-	mvn versions:set -DnewVersion=$*
-}
+# function mSVersion(){
+# 	mvn versions:set -DnewVersion=$*
+# }
 
 alias sdkman='source "$HOME/.sdkman.src"'
 
@@ -248,20 +248,4 @@ function cv () {
 
 alias pydocweb='python -m pydoc -p 4444'
 
-#. /usr/share/autojump/autojump.sh
-
-alias gg='git grep -n'
-
-alias cf='cd ~/dev/caseflow && c'
-
-eval "$(thefuck --alias)"
-
-#####
-# Custom DSVA Appeals config
-#####
-alias mfa="source issue_mfa Yoom.Lam"
-alias sockson="socks on Yoom.Lam"
-alias socksoff="socks off"
-# dsva=setup
-
-
+source ~/.alias-$HOSTNAME

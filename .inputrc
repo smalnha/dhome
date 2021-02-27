@@ -89,13 +89,15 @@ TAB: complete
 
 # mac Terminal
 # https://brettterpstra.com/2015/07/09/shell-tricks-inputrc-binding-fun/
-"\e[1;5C": forward-word    # Option-rightArrow
-"\e[1;5D": backward-word   # Option-leftArrow
+#"\e[1;5C": forward-word    # Option-rightArrow
+#"\e[1;5D": backward-word   # Option-leftArrow
 
 # iTerm2 mac
 # https://superuser.com/questions/357355/how-can-i-get-controlleft-arrow-to-go-back-one-word-in-iterm2
 "\M-\e[D": backward-word   # Option-leftArrow
 "\M-\e[C": forward-word    # Option-rightArrow
+"\C-\e[D": backward-word   # Ctrl-leftArrow
+"\C-\e[C": forward-word    # Ctrl-rightArrow
 "\e[1;5A": "pushd ..\n"   # Ctrl-upArrow
 "\e[1;5B": "popd\n"       # Ctrl-downArrow
 #"\M-\e[D": backward-kill-word
@@ -114,4 +116,5 @@ TAB: complete
 # so that SBT stops complaining
 
 
+"\C-n": "popd"
 

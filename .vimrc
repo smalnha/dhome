@@ -334,6 +334,10 @@ endif
 
 if &term == "xterm"
 	colorscheme transdnlam-xterm
+elseif &term == "xterm-256color"
+	colorscheme transdnlam-xterm
+elseif &term == "xterm-kitty"
+	colorscheme transdnlam-xterm
 elseif &term == "rxvt"
 	colorscheme transdnlam
 	"colorscheme transparent

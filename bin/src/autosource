@@ -29,24 +29,24 @@ dev_old(){
 . $MY_BINSRC/functions.src
 # . $MY_BINSRC/initcvs.src
 #. $MY_BINSRC/marks && initmarks
-. $MY_BINSRC/bashDirB.src
+#. $MY_BINSRC/bashDirB.src
 
-m4aTomp3(){
-	#!/bin/bash
-	#
-	# Dump m4a to mp3
-
-	for i in *.m4a
-	do
-		if [ -f "$i" ]; then
-			rm -f "$i.wav"
-			mkfifo "$i.wav"
-			mplayer "$i" -ao pcm:file="$i.wav" &
-			dest=`echo "$i"|sed -e 's/m4a$/mp3/'`
-			lame "$i.wav" "$dest"
-		fi
-	done
-}
+# m4aTomp3(){
+# 	#!/bin/bash
+# 	#
+# 	# Dump m4a to mp3
+# 
+# 	for i in *.m4a
+# 	do
+# 		if [ -f "$i" ]; then
+# 			rm -f "$i.wav"
+# 			mkfifo "$i.wav"
+# 			mplayer "$i" -ao pcm:file="$i.wav" &
+# 			dest=`echo "$i"|sed -e 's/m4a$/mp3/'`
+# 			lame "$i.wav" "$dest"
+# 		fi
+# 	done
+# }
 
 # for shell automation, see 'expect'
 # 'set -x' for debugging

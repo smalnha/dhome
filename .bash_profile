@@ -34,7 +34,7 @@ if [ -z "$MY_TRASH" ] || [ "$1" == "--force" ] ; then
 	# used by many apps (e.g. gs, ps2pdf, gksudo)
 	# must use actual resolved directory since root will not have permissions to a mounted home directory or its subdirs
 	[ -e "$HOME/.my_links/tempDir" ] && export  TEMP=`readlink -f "$HOME/.my_links/tempDir"`
-	[ "$TEMP" ] || export TEMP="$MY_NOBACKUP/tmp"
+	[ "$TEMP" ] || export TEMP="$MY_NOBACKUP/var/tmp"
 	# used by mutt
 	export TMPDIR=$TEMP
 	export TMP=$TEMP

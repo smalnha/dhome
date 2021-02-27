@@ -1,4 +1,6 @@
-#list of useful functions/shortcuts
+#!/bin/bash
+
+# list of useful functions/shortcuts
 
 # To have functions available in subshells: export -f functionName
 
@@ -90,7 +92,7 @@ Usage: fstr [-i] \"pattern\" [\"filename pattern\"] "
     fi
     #find . ${3:-} -type f | grep -v "\.svn/" | xargs grep --color -sn ${case} "$1" {} 2>&-
     #find . ${3:-} -type f -name "${2:-*}" | grep -v "\.svn/" | xarg -t grep --color -sn ${case} "$1" {} 2>&-
-    find . ${3:-} -type f -name "${2:-*}" -not -path "./.git/*" -not -path "./tmp/*" -print0 | xargs -0 grep --color -sn ${case} "$1" 2>&-
+    find . ${3:-} -type f -name "${2:-*}" -not -path "*/.tags" -not -path "./.git/*" -not -path "./tmp/*" -print0 | xargs -0 grep --color -sn ${case} "$1" 2>&-
 }
 function fstrLocal(){
 	fstr "$1" "${2:-*}" "-maxdepth ${3:-1}"
@@ -182,10 +184,10 @@ function swap()         # swap 2 filenames around
 # Process/system related functions:
 #-----------------------------------
 
-function p() { ps $@ -u $USER -o pid,%cpu,%mem,bsdtime,start_time,command ; }
-function pdup() { ps $@ -u $USER -o pid,%cpu,%mem,bsdtime,start_time,command | sort -k 6 ; }
-function pp() { ps f -u $USER -o pid,%cpu,%mem,bsdtime,start_time,command | awk '!/awk/ && $0~var' var=${1:-".*"} ; }
-function ppo() { ps f -u $USER -o pid,%cpu,%mem,bsdtime,start_time,command | grep -v "\(xfce4\|.xsession\|gnubiff\|fluxbox\|ivman\|xautolock\|nailer\)" ; }
+function p() { ps $@ -u $USER -o pid,%cpu,%mem,command ; }
+function pdup() { ps $@ -u $USER -o pid,%cpu,%mem,command | sort -k 6 ; }
+function pp() { ps -u $USER -o pid,%cpu,%mem,command | awk '!/awk/ && $0~var' var=${1:-".*"} ; }
+function ppo() { ps -u $USER -o pid,%cpu,%mem,command | grep -v "\(xfce4\|.xsession\|gnubiff\|fluxbox\|ivman\|xautolock\|nailer\)" ; }
 
 function my_ip() # get IP adresses
 {
@@ -193,7 +195,7 @@ function my_ip() # get IP adresses
 		MY_IP=$(/sbin/ifconfig ${IFNAME} | awk '/inet/ { print $2 } ' | sed -e 's/addr://')
    	MY_ISP=$(/sbin/ifconfig ${IFNAME} | awk '/P-t-P/ { print $3 } ' | sed -e 's/P-t-P://')
 		case "$MY_IP" in
-			*.*.*.*) 
+			*.*.*.*)
 				echo "$MY_IP"
 				return ;;
 		esac
@@ -238,87 +240,88 @@ sudo dmidecode -s system-version
 	echo -e "\n$RED Show all programs connected or listening on a network port";
 		netstat -alnp --protocol=inet | grep -v CLOSE_WAIT | cut -c-6,21-94 | tail +2
 
-    echo 
+    echo
     echo -e "\n${RED}Open ports: $NC";  nmap localhost
-    echo 
+    echo
     echo -e "\n${RED}Open files that are using internet and ports: $NC"; lsof -n -i -P
 	echo -e "\n${RED}lshw :$NC" ; sudo lshw
 	echo -e "\n${RED}Hdparm info for hda :$NC" ; sudo hdparm -i /dev/hda
 	echo -e "\n${RED}tune2fs hda :$NC" ; sudo tune2fs -l `mount | grep " / " | cut -d " " -f 1`
-    echo 
+    echo
 }
 
 
 # Misc utilities:
 
-function repeat()       # repeat n times command
-{
-    local i max
-    max=$1; shift;
-    for ((i=1; i <= max ; i++)); do  # --> C-like syntax
-        eval "$@";
-    done
-}
+# function repeat()       # repeat n times command
+# {
+#     local i max
+#     max=$1; shift;
+#     for ((i=1; i <= max ; i++)); do  # --> C-like syntax
+#         eval "$@";
+#     done
+# }
 
 # dnlam: my functions
 
-renExt(){
-	# find -name "*.$1" -type f | xargs -i echo $(myBasename "{}" ".$1")
-	#| xargs -i mv {} `myBasename {} .$1`.$2
-	for i in *.$1; do mv $i "`myBasename "$i" "$1"`$2"; done
+# renExt(){
+# 	# find -name "*.$1" -type f | xargs -i echo $(myBasename "{}" ".$1")
+# 	#| xargs -i mv {} `myBasename {} .$1`.$2
+# 	for i in *.$1; do mv $i "`myBasename "$i" "$1"`$2"; done
 
-# only for redhat:	rename $1 $2 *$1
-}
-renFiles(){
-	echo "renFiles {fileset} {oldPattern} {newPattern}"
-# only for redhat:	rename $2 $3 $1
-	for OLDF in $1
-	do			
-	   NEWF=`echo $OLDF | sed "s/$2/$3/"`
-	   mv -v $OLDF $NEWF	# rename the file
-	done
-}
-renDirs(){
-	find . -type d -name $1 | while read dirname; do
-		echo "mv $dirname ${dirname%/$1}/$2"
-		mv $dirname ${dirname%/$1}/$2
-	done
-}
+# # only for redhat:	rename $1 $2 *$1
+# }
+# renFiles(){
+# 	echo "renFiles {fileset} {oldPattern} {newPattern}"
+# # only for redhat:	rename $2 $3 $1
+# 	for OLDF in $1
+# 	do
+# 	   NEWF=`echo $OLDF | sed "s/$2/$3/"`
+# 	   mv -v $OLDF $NEWF	# rename the file
+# 	done
+# }
+# renDirs(){
+# 	find . -type d -name $1 | while read dirname; do
+# 		echo "mv $dirname ${dirname%/$1}/$2"
+# 		mv $dirname ${dirname%/$1}/$2
+# 	done
+# }
 
-tgzlist(){
-	tar -ztf $*
-}
-tgz(){
-    if [ -d "$1" ]; then
-        # basename removes the trailing '/'
-        tar -zcvf "`basename $1`.tgz" "$1"
-    else
-    	tar -zcvf "$@" 
-    fi
-}
-tgzupdate(){
-	FILEN=$1
-	shift
-	gunzip $FILEN
-	tar -uvf ${FILEN%.*}.tar $*
-	gzip ${FILEN%.*}.tar
-	mv ${FILEN%.*}.tar.gz $FILEN 
-}
-bz2(){
-	tar -jcvf $*
-}
-untgz(){
-	tar -zxv --directory=${2:-.} -f $1
-}
-unbz2(){
-	tar -jxv --directory=${2:-.} -f $1
-}
+# tgzlist(){
+# 	tar -ztf $*
+# }
+# tgz(){
+#     if [ -d "$1" ]; then
+#         # basename removes the trailing '/'
+#         tar -zcvf "`basename $1`.tgz" "$1"
+#     else
+#     	tar -zcvf "$@"
+#     fi
+# }
+# tgzupdate(){
+# 	FILEN=$1
+# 	shift
+# 	gunzip $FILEN
+# 	tar -uvf ${FILEN%.*}.tar $*
+# 	gzip ${FILEN%.*}.tar
+# 	mv ${FILEN%.*}.tar.gz $FILEN
+# }
 
-intalltgz(){
-	tar -zxvf $1
-	cd `myBasename $1 .tar.gz`* && \
-	./configure && make && make install
-}
+# bz2(){
+# 	tar -jcvf $*
+# }
+# untgz(){
+# 	tar -zxv --directory=${2:-.} -f $1
+# }
+# unbz2(){
+# 	tar -jxv --directory=${2:-.} -f $1
+# }
+
+# intalltgz(){
+# 	tar -zxvf $1
+# 	cd `myBasename $1 .tar.gz`* && \
+# 	./configure && make && make install
+# }
 
 findgrep () {           # find | grep
 	if [ $# -eq 0 ]; then
@@ -338,36 +341,36 @@ noh(){
 	#( (nohup $* < /dev/null 2>&1) && (echo "-- Done: $*" < /dev/null >> nohup.out 2>&1) ) < /dev/null > /dev/null 2>&1 &
 }
 
-function printLandscape(){
-	# --no-header
-	a2ps -1 --landscape --chars-per-line=200 $*
-	open.sh ${1%%.*}.ps
-	rm -i ${1%%.*}.ps
-}
+# function printLandscape(){
+# 	# --no-header
+# 	a2ps -1 --landscape --chars-per-line=200 $*
+# 	open.sh ${1%%.*}.ps
+# 	rm -i ${1%%.*}.ps
+# }
 
-function print1up(){
-	# --no-header
-	a2ps -1 $*
-	open.sh ${1%%.*}.ps
-	rm -i ${1%%.*}.ps
-}
+# function print1up(){
+# 	# --no-header
+# 	a2ps -1 $*
+# 	open.sh ${1%%.*}.ps
+# 	rm -i ${1%%.*}.ps
+# }
 
-function print2up(){
-	# a2ps --list-options
-	# -A several files on 1 sheet
-	# --no-header
-	a2ps -2 $*
-	open.sh ${1%%.*}.ps
-	rm -i ${1%%.*}.ps
-}
+# function print2up(){
+# 	# a2ps --list-options
+# 	# -A several files on 1 sheet
+# 	# --no-header
+# 	a2ps -2 $*
+# 	open.sh ${1%%.*}.ps
+# 	rm -i ${1%%.*}.ps
+# }
 
-forAllExcept(){
-	ls -AF1 --indicator-style=none | grep -v $1 | xargs $2
-}
+# forAllExcept(){
+# 	ls -AF1 --indicator-style=none | grep -v $1 | xargs $2
+# }
 
-rmALLexcept(){
-	forAllExcept $1 "rm -r"
-}
+# rmALLexcept(){
+# 	forAllExcept $1 "rm -r"
+# }
 
 myVars(){
 	for VARS in ${!MY_*}; do
@@ -380,53 +383,52 @@ dusage(){
 	command du -xs * . | sort -n -r
 }
 
-function fixExecMod() { find . -type f -iname '*'.$1 -print -exec chmod a-x {} \; ; }
+# function fixExecMod() { find . -type f -iname '*'.$1 -print -exec chmod a-x {} \; ; }
 
-function fixALLMod() { 
-	for extens in  jar htm html js ini xml java c cpp zip props xsl txt jpg png gif xpm doc rtf vsd ppt psd ps pdf asc ico log
-	do
-		fixExecMod $extens'*'
-	done
+# function fixALLMod() {
+# 	for extens in  jar htm html js ini xml java c cpp zip props xsl txt jpg png gif xpm doc rtf vsd ppt psd ps pdf asc ico log
+# 	do
+# 		fixExecMod $extens'*'
+# 	done
 
-	find . -type d | xargs chmod o-w
-}
+# 	find . -type d | xargs chmod o-w
+# }
 
-################################################################################3333
-#http://www.novell.com/documentation/suse91/suselinux-adminguide/html/ch06s06.html
+# ################################################################################3333
+# #http://www.novell.com/documentation/suse91/suselinux-adminguide/html/ch06s06.html
 
-#Conversion from PostScript to PDF:
-gs_ps2pdf(){
-    gs -q -dNOPAUSE -dSAFER \
-     -sOutputFile=/tmp/colorcir.pdf -sDEVICE=pdfwrite \
-     /usr/share/doc/packages/ghostscript/examples/colorcir.ps \
-     quit.ps
-}
+# #Conversion from PostScript to PDF:
+# gs_ps2pdf(){
+#     gs -q -dNOPAUSE -dSAFER \
+#      -sOutputFile=/tmp/colorcir.pdf -sDEVICE=pdfwrite \
+#      /usr/share/doc/packages/ghostscript/examples/colorcir.ps \
+#      quit.ps
+# }
 
-#Conversion of the generated PDF file /tmp/colorcir.pdf to PostScript:
-gs_pdf2ps(){
-    gs -q -dNOPAUSE -dSAFER \
-     -sOutputFile=/tmp/colorcir.ps -sDEVICE=pswrite \
-     /tmp/colorcir.pdf quit.ps
-}
+# #Conversion of the generated PDF file /tmp/colorcir.pdf to PostScript:
+# gs_pdf2ps(){
+#     gs -q -dNOPAUSE -dSAFER \
+#      -sOutputFile=/tmp/colorcir.ps -sDEVICE=pswrite \
+#      /tmp/colorcir.pdf quit.ps
+# }
 
-#Following the reconversion from PDF to PostScript, the file /tmp/colorcir.ps does not match the original file /usr/share/doc/packages/ghostscript/examples/colorcir.ps. However, there should be no visible difference in the printout.
+# #Following the reconversion from PDF to PostScript, the file /tmp/colorcir.ps does not match the original file /usr/share/doc/packages/ghostscript/examples/colorcir.ps. However, there should be no visible difference in the printout.
 
-#Merging PostScript and PDF files into a PostScript file:
-gs_psMerge(){
-    local OUTFILE=$1
-    shift
-    gs -q -dNOPAUSE -dSAFER -dBATCH -sDEVICE=pswrite -sOutputFile="$OUTFILE" "$@"
-}
+# #Merging PostScript and PDF files into a PostScript file:
+# gs_psMerge(){
+#     local OUTFILE=$1
+#     shift
+#     gs -q -dNOPAUSE -dSAFER -dBATCH -sDEVICE=pswrite -sOutputFile="$OUTFILE" "$@"
+# }
 
-#Merging PostScript and PDF files into a PDF file:
-gs_mergeToPdf(){
-    gs -q -dNOPAUSE -dSAFER -sOutputFile=/tmp/out.pdf \
-     -sDEVICE=pdfwrite /tmp/out.ps \
-     /usr/share/doc/packages/ghostscript/examples/golfer.ps \
-     /tmp/colorcir.pdf quit.ps
-}
+# #Merging PostScript and PDF files into a PDF file:
+# gs_mergeToPdf(){
+#     gs -q -dNOPAUSE -dSAFER -sOutputFile=/tmp/out.pdf \
+#      -sDEVICE=pdfwrite /tmp/out.ps \
+#      /usr/share/doc/packages/ghostscript/examples/golfer.ps \
+#      /tmp/colorcir.pdf quit.ps
+# }
 
 
-
-diffxml() { diff -wb <(xmllint --format "$1") <(xmllint --format "$2"); }
+# diffxml() { diff -wb <(xmllint --format "$1") <(xmllint --format "$2"); }
 

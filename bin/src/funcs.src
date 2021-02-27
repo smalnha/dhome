@@ -1,0 +1,49 @@
+#!/bin/bash
+
+myVars(){
+	for VARS in ${!MY_*}; do
+		echo $VARS=`printenv $VARS`
+	done
+	unset VARS
+}
+
+trash(){
+    for F in "$@"; do
+        DESTDIR="$MY_TRASH/`pwd`/`dirname "$F"`";
+        mkdir -p "$DESTDIR"
+        mv -fv "$F" "$DESTDIR"
+    done
+}
+utrash(){
+	mv -v $MY_TRASH/`pwd`/$* `pwd`
+}
+
+
+# Find a file with a pattern in name:
+function ff() { find . -follow -iname $* -ls ; }
+
+function fstr()
+{
+    OPTIND=1
+    local case=""
+    local usage="fstr: find string in files.
+Usage: fstr [-i] \"pattern\" [\"filename pattern\"] "
+    while getopts :it opt
+    do
+        case "$opt" in
+        i) case="-i " ;;
+        *) echo "$usage"; return;;
+        esac
+    done
+    shift $(( $OPTIND - 1 ))
+    if [ "$#" -lt 1 ]; then
+        echo "$usage"
+        return;
+    fi
+    #find . ${3:-} -type f | grep -v "\.svn/" | xargs grep --color -sn ${case} "$1" {} 2>&-
+    #find . ${3:-} -type f -name "${2:-*}" | grep -v "\.svn/" | xarg -t grep --color -sn ${case} "$1" {} 2>&-
+    find . ${3:-} -type f -name "${2:-*}" -not -path "*/.tags" -not -path "./.git/*" -not -path "./tmp/*" -print0 | xargs -0 grep --color -sn ${case} "$1" 2>&-
+}
+function fstrLocal(){
+	fstr "$1" "${2:-*}" "-maxdepth ${3:-1}"
+}
