@@ -18,7 +18,7 @@ set smarttab
 " Allow backspace to back over lines
 set backspace=indent,eol,start
 set exrc
-set shiftwidth=3    
+set shiftwidth=3
 " Always expand tabs to spaces
 "set expandtab
 "set softtabstop=3
@@ -258,25 +258,25 @@ vnoremap <S-Tab> <LT>
 
 filetype on
 
-function WQHelper() 
-    let x = confirm("Current Mode ==  Insert-Mode!\n Would you like ':wq'?"," &Yes \n &No",1,1) 
-        if x == 1 
-            silent! :wq 
-        else 
-    "??? 
+function WQHelper()
+    let x = confirm("Current Mode ==  Insert-Mode!\n Would you like ':wq'?"," &Yes \n &No",1,1)
+        if x == 1
+            silent! :wq
+        else
+    "???
         endif
-endfunction 
+endfunction
 iab wq <bs><esc>:call WQHelper()<CR>
 
 "--- for switching buffers ---
-map <C-N> <ESC>:bn <CR>  
-map <C-P> <ESC>:bp <CR> 
+map <C-N> <ESC>:bn <CR>
+map <C-P> <ESC>:bp <CR>
 
 "---- for split windows ----
 map - <C-W>-
-map + <C-W>+ 
+map + <C-W>+
 
-:" map Mac OS X default Home and End 
+:" map Mac OS X default Home and End
 :map <C-A> <HOME>
 :map <C-E> <END>
 :inoremap <C-A> <C-O>0
@@ -291,7 +291,7 @@ map + <C-W>+
 :noremap <ESC>f w
 " Backspace
 :map <C-h> <BS>
- 
+
 " minimum window height
 "set winminheight=0
 "Ctrl-W, Up (move up a window) Ctrl-W, _ (maximize)
@@ -312,16 +312,16 @@ nmap <M-p> :previous<CR>
 " nmap <silent> <M-Up> :wincmd k<CR>
 " nmap <silent> <M-Down> :wincmd j<CR>
 " nmap <silent> <M-Left> :wincmd h<CR>
-" nmap <silent> <M-Right> :wincmd l<CR> 
+" nmap <silent> <M-Right> :wincmd l<CR>
 
-" reads vim settings at beginning or end of file: /* vim:set shiftwidth=4: */ 
+" reads vim settings at beginning or end of file: /* vim:set shiftwidth=4: */
 set modelines=5
 set modeline
 
 " abbreviations
 iab #! #!/bin/bash
 
-" automatic comment 
+" automatic comment
 set comments=sl:/*,mb:*,elx:*/
 
 
@@ -332,25 +332,26 @@ if &diff
     map <C-G> :diffget
 endif
 
-if &term == "xterm"
-	colorscheme transdnlam-xterm
-elseif &term == "xterm-256color"
-	colorscheme transdnlam-xterm
-elseif &term == "xterm-kitty"
-	colorscheme transdnlam-xterm
-elseif &term == "rxvt"
-	colorscheme transdnlam
-	"colorscheme transparent
-else 
+"if &term == "xterm"
+"	colorscheme transdnlam-xterm
+"elseif &term == "xterm-256color"
+"	colorscheme transdnlam-xterm
+"elseif &term == "xterm-kitty"
+"	colorscheme transdnlam
+"elseif &term == "rxvt"
+"	colorscheme transdnlam
+"	"colorscheme transparent
+"else
 	colorscheme default
-endif
+"endif
 
 " make sure the autocommands are only included once, in case .vimrc is sourced
 " twice
-if !exists("autocommands_loaded")
-	let autocommands_loaded = 1
-	autocmd FileType java source ~/.vim/java.vim
-endif
+" if !exists("autocommands_loaded")
+" 	let autocommands_loaded = 1
+" 	autocmd FileType java source ~/.vim/java.vim
+" endif
 
-source ~/.vim/gpg.vim
+" source ~/.vim/gpg.vim
+set noswapfile
 

@@ -72,7 +72,7 @@ def print_standup(groups):
     else:
         print("  * :man-shrugging:")
 
-    print('\n**Blocked on** :question_block:')
+    print('\n**Blocked** :question_block:')
     bullets=task_bullets_for_standup(groups['blocked'])
     bullets+=task_bullets_for_standup(groups['back to owner'], printStatus=True)
     bullets+=task_bullets_for_standup(groups['review'], printStatus=True)
@@ -242,7 +242,7 @@ def standup():
     print_standup(groups)
 
 def leveling():
-    lists=getLists("Task Management", ["Done-2020-B"])
+    lists=getLists("Task Management", ["Done-2021-B"])
     # nava_lists=getLists("Nava", ["Done-Nava-2020-B"])
     groups=group_tasks_by_leveling(lists[0])
     print_stats(groups)

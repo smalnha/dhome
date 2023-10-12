@@ -1,7 +1,7 @@
 
 [user]
 #	name = yoomlam
-#	email = yoom@navapbc.com
+	email = yoom@navapbc.com
 
 [alias]
 	s = status
@@ -21,11 +21,11 @@
 	change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD' ]]; then export $VAR='$NEW'; fi\" $@; }; f"
 
 [pager]
-  grep = false
+   grep = false
 [push]
 	default = current
 [gui]
-	editor = subl
+	editor = atom --wait
 	historybrowser = gitk
 [cola]
 	linebreak = false
@@ -37,7 +37,9 @@
 	process = git-lfs filter-process
 	required = true
 [core]
+	editor = vim
 	excludesfile = /Users/yoomlam/.gitignore_global
+	autocrlf = input
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =
@@ -46,3 +48,13 @@
 	trustExitCode = true
 [commit]
 	template = /Users/yoomlam/.stCommitMsg
+
+# https://git-scm.com/docs/gitcredentials
+# https://git-scm.com/docs/git-credential-store
+# git help -a | grep credential
+# https://docs.github.com/en/get-started/getting-started-with-git/updating-credentials-from-the-macos-keychain
+# https://stackoverflow.com/questions/47465644/github-remote-permission-denied
+[credential]
+	helper = store
+[credential "github.com"]
+	useHttpPath = true

@@ -23,3 +23,6 @@ for D in "$HOME/bin" "$HOME/bin/online"; do
 	fi
 done
 
+. "$HOME/.cargo/env"
+
+export PATH="$HOME/.poetry/bin:$PATH"

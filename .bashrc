@@ -143,7 +143,7 @@ else
 			fi
 
 			# for xterm title change
-			case "$LC_TERMINAL" in 
+			case "$LC_TERMINAL" in
 				#iTerm*) ;; # let iTerm set title
 				*)
 					local TITLE="${MY_SSHHOST}${PWD/\/Users\/$USER/\$H}"
@@ -278,11 +278,16 @@ else
 
 fi
 
-export NVM_DIR="~/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="~/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
 #export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Rust package manager
+# . "$HOME/.cargo/env"
+
+export BASH_SILENCE_DEPRECATION_WARNING=1

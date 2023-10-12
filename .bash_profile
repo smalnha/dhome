@@ -197,3 +197,8 @@ fi
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 
+# Rust package manager
+. "$HOME/.cargo/env"
+
+export PATH="$HOME/.poetry/bin:$PATH"
+
